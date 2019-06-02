@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>litchi-ui</title>
     <style>
-        *{margin: 0; padding: 0; box-sizing: border-box}
-        :root{
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
             --button-height: 32px;
             --button-size: 14px;
             --button-bg: white;
@@ -18,15 +24,27 @@
             --border-color-hover: #666;
         }
 
-        #app{
+        #app {
             padding: 20px;
         }
     </style>
+
+    <style>
+        .icon {
+            width: 1em;
+            height: 1em;
+        }
+    </style>
 </head>
+
 <body>
     <div id="app">
-        <lc-button></lc-button>
+        <lc-button>确定</lc-button>
+        <lc-button icon="setting">确定</lc-button>
+        <lc-button icon="setting" icon-position="right">确定</lc-button>
     </div>
     <script src="./src/app.js"></script>
+    <script src="//at.alicdn.com/t/font_1224112_m7rllwsuok.js"></script>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 <template>
   <button class="lc-button" :class="{[`icon-${iconPosition}`]: true}">
-    <lc-icon v-if="loading" name="loading" class="lc-button__loading"></lc-icon>
+    <lc-icon v-if="loading" name="loading" class="lc-button__loading lc-button__icon"></lc-icon>
     <lc-icon :name="icon" v-if="!loading && icon" class="lc-button__icon"></lc-icon>
     <span class="lc-button__content">
       <slot></slot>
@@ -58,17 +58,13 @@ export default {
   &:focus {
     outline: none;
   }
-  &__loading{
-    margin-right: .2em;
-    animation: spin 1.5s infinite linear;
+  &__loading{animation: spin 1.5s infinite linear;
   }
   &__icon {
     order: 1;
     margin-right: .2em;
   }
-  &__content {
-    order: 2;
-  }
+  &__content { order: 2;}
 
   &.icon-right {
     .lc-button__content {

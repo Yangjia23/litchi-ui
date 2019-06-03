@@ -1,8 +1,6 @@
 <template>
   <button class="lc-button" :class="{[`icon-${iconPosition}`]: true}">
-    <svg v-if="icon" class="icon" aria-hidden="true">
-      <use :xlink:href="`#i-${icon}`"></use>
-    </svg>
+    <lc-icon :name="icon" v-if="icon" class="icon"></lc-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -31,6 +29,7 @@ export default {
 .lc-button {
   font-size: var(--button-size);
   height: var(--button-height);
+  line-height: 1.2;
   padding: 0 1em;
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
@@ -50,7 +49,7 @@ export default {
   }
   > .icon {
     order: 1;
-    margin-right: .1em;
+    margin-right: .3em;
   }
   > .content {
     order: 2;
@@ -63,7 +62,7 @@ export default {
     > .icon {
       order: 2;
       margin-right: 0;
-      margin-left: .1em;
+      margin-left: .3em;
     }
   }
 }

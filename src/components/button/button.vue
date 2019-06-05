@@ -1,5 +1,5 @@
 <template>
-  <button class="lc-button" :class="{[`icon-${iconPosition}`]: true}">
+  <button class="lc-button" :class="{[`icon-${iconPosition}`]: true}" @click="$emit('click')">
     <lc-icon v-if="loading" name="loading" class="lc-button__loading lc-button__icon"></lc-icon>
     <lc-icon :name="icon" v-if="!loading && icon" class="lc-button__icon"></lc-icon>
     <span class="lc-button__content">
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import Icon from '../icon'
 export default {
   name: "",
   props: {
@@ -23,6 +24,9 @@ export default {
       }
     },
     loading: Boolean
+  },
+  components: {
+    'lc-icon': Icon
   }
 };
 </script>

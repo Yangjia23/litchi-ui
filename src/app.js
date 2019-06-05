@@ -8,11 +8,19 @@ Vue.component('lc-button-group', ButtonGroup)
 Vue.component('lc-icon', Icon)
 new Vue({
     el: '#app',
+    methods: {
+        onBtnClick (e) {
+            console.log(e)
+        }
+    }
 })
 
 // 单元测试
-import {createTest, destoryVM} from './utils'
+import {createTest, destoryVM} from '../test/utils'
 import chai from'chai'
+import spies from 'chai-spies'
+
+chai.use(spies)
 const expect = chai.expect
 
 {
@@ -46,5 +54,17 @@ const expect = chai.expect
     let svg = $vm.$el.querySelector('svg')
     let {order} = window.getComputedStyle(svg)
     expect(order).to.eq('2')
+    destoryVM($vm)
+}
+
+{
+    // click 
+    const $vm = createTest(Button, {icon: 'setting', iconPosition: 'right'}, true)
+    const spy = chai.spy(() => {console.log('clicked')})
+    $vm.$on('click', spy)
+
+    const button = $vm.$el
+    button.click()
+    expect(spy).to.have.been.called()
     destoryVM($vm)
 }

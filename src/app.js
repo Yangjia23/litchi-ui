@@ -61,7 +61,7 @@ const expect = chai.expect
     // click 
     const $vm = createTest(Button, {icon: 'setting', iconPosition: 'right'}, true)
     const spy = chai.spy(() => {console.log('clicked')})
-    $vm.$on('click', spy)
+    $vm.$on('click', spy)       
 
     const button = $vm.$el
     button.click()

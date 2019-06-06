@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
-    "test": "parcel build test/* --no-cache --no-minify && karma start --single-run"
+    "test": "parcel build test/utils/specs/* --no-cache --no-minify && karma start --single-run"
   },
   "dependencies": {
     "vue": "^2.6.10",

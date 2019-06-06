@@ -1,9 +1,11 @@
-import chai from 'chai';
-const expect = chai.expect;
+import chai, {expect} from 'chai';
 import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 import Vue from 'vue'
-import Button from '../src/components/button'
-import { createTest, destoryVM } from './utils'
+import Button from '../../../src/components/button'
+import { createTest, destoryVM } from '..'
+
+chai.use(sinonChai)
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
@@ -45,22 +47,9 @@ describe('Button', () => {
     it('点击 button 触发 click 事件', () => {
         const vm = createTest(Button, { icon: 'setting' }, true)
         const callback = sinon.fake();
+        console.log(callback)
         vm.$on('click', callback)
         vm.$el.click()
         expect(callback).to.have.been.called
-    })
-    it('点击 button 触发 click 事件', () => {
-        const Constructor = Vue.extend(Button)
-        const vm = new Constructor({
-        propsData: {
-            icon: 'settings',
-        }
-        }).$mount()
-
-        const callback = sinon.fake();
-        vm.$on('click', callback)
-        vm.$el.click()
-        expect(callback).to.have.been.called
-
     })
 })

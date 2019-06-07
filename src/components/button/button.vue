@@ -42,9 +42,8 @@ export default {
     },
     size: {
       type: String,
-      default: "",
       validator(value) {
-        return ["large", "small"].includes(value);
+        return ["larger", "small"].includes(value);
       }
     },
     loading: Boolean,

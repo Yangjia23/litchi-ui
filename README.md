@@ -1,5 +1,5 @@
 # litchi-ui
-
+[![Build Status](https://travis-ci.com/Yangjia23/litchi-ui.svg?branch=master)](https://travis-ci.com/Yangjia23/litchi-ui)
 ## 介绍
 
 ## 开始使用

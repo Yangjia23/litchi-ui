@@ -24,7 +24,7 @@
 <script>
 import Icon from "../icon";
 export default {
-  name: "",
+  name: "button",
   props: {
     type: {
       type: String,

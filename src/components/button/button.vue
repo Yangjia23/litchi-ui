@@ -146,7 +146,6 @@ export default {
   &_icon {
     order: 1;
     margin-right: 0.2em;
-    fill: currentColor;
   }
   &_content {
     order: 2;

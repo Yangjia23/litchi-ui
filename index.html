@@ -49,9 +49,33 @@
 
 <body>
     <div id="app">
-        <lc-button>默认</lc-button>
-        <lc-button>默认</lc-button>
-        <lc-input placeholder="請輸入" readonly/>
+
+        <lc-button icon="setting">设置</lc-button>
+        <h2>普通使用</h2>
+        <lc-input placeholder="请输入"></lc-input>
+        <lc-input placeholder="请输入密码" type="password"></lc-input>
+        <lc-input placeholder="请输入数字" type="number"></lc-input>
+        <lc-input placeholder="" value="默认值 1"></lc-input>
+        <lc-input placeholder="只读" readonly></lc-input>
+        <lc-input placeholder="禁止" disabled></lc-input>
+
+
+        <h2>前置/后置标签</h2>
+        <lc-input placeholder="请输入邮箱">
+            <lc-icon name="email" slot="prepend"></lc-icon>
+        </lc-input>
+        <lc-input placeholder="请搜索">
+            <template slot="append">
+                <lc-button>搜索</lc-button>
+            </template>
+        </lc-input>
+        <lc-input placeholder="请搜索">
+            <lc-button icon="search" slot="append"></lc-button>
+        </lc-input>
+        <lc-input placeholder="请输入">
+            <template slot="prepend">www</template>
+            <template slot="append">cn</template>
+        </lc-input>
         <!-- <lc-button type="primary">主色调</lc-button>
         <lc-button type="success">成功</lc-button>
         <lc-button type="danger">危险</lc-button>
@@ -82,7 +106,7 @@
         <lc-button round size="small">超小按鈕</lc-button> -->
     </div>
     <script src="./src/app.js"></script>
-    <script src="//at.alicdn.com/t/font_1224112_55x3udhia3.js"></script>
+    <script src="//at.alicdn.com/t/font_1224112_8dtgh6chj9.js"></script>
 </body>
 
 </html>

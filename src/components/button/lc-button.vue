@@ -24,7 +24,7 @@
 <script>
 import Icon from "../icon";
 export default {
-  name: "button",
+  name: "LcButton",
   props: {
     type: {
       type: String,
@@ -90,7 +90,6 @@ export default {
   align-items: center;
   vertical-align: middle;
   cursor: pointer;
-  margin-bottom: 10px;
 
   & + & {
     margin-left: 10px;

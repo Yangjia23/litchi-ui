@@ -6,12 +6,12 @@
 
 <script>
 export default {
-  name: "lc-icon",
+  name: "LcIcon",
   props: ['name']
 };
 </script>
 
-<style>
+<style lang="less" scoped>
 .lc-icon {
   width: 1em;
   height: 1em;

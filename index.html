@@ -49,8 +49,65 @@
 
 <body>
     <div id="app">
-        <h2>可清空</h2>
-        <lc-input placeholder="请输入" clearable v-model="message"></lc-input>
+        <h2>普通使用</h2>
+        <lc-row>
+            <lc-col>12</lc-col>
+            <lc-col>12</lc-col>
+        </lc-row>
+        <lc-row>
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+        </lc-row>
+        <lc-row>
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+        </lc-row>
+        <lc-row>
+            <lc-col span="2">2</lc-col>
+            <lc-col span="22">22</lc-col>
+        </lc-row>
+
+        <h2>位移</h2>
+        <lc-row>
+            <lc-col span="6">6</lc-col>
+            <lc-col offset="6" span="6">6</lc-col>
+        </lc-row>
+        <lc-row>
+            <lc-col>4</lc-col>
+            <lc-col offset="16">4</lc-col>
+        </lc-row>
+        <lc-row>
+            <lc-col offset="6" span="12">12</lc-col>
+        </lc-row>
+
+        <h2>间隔</h2>
+        <lc-row gutter="20">
+            <lc-col>12</lc-col>
+            <lc-col>12</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col span="2">2</lc-col>
+            <lc-col span="22">22</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col span="6">6</lc-col>
+            <lc-col offset="6" span="6">6</lc-col>
+        </lc-row>
+
     </div>
     <script src="./src/app.js"></script>
     <script src="//at.alicdn.com/t/font_1224112_m3ucves90f.js"></script>

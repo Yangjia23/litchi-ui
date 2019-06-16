@@ -1,2 +1,2 @@
-import LcInput from './lc-input';
-export default LcInput
+import Input from './lc-input';
+export default Input

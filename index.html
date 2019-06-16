@@ -49,76 +49,8 @@
 
 <body>
     <div id="app">
-
-        <lc-button icon="setting">设置</lc-button>
-        <h2>普通使用</h2>
-        <lc-input placeholder="请输入"></lc-input>
-        <lc-input placeholder="请输入密码" type="password"></lc-input>
-        <lc-input placeholder="请输入数字" type="number"></lc-input>
-        <lc-input placeholder="" v-model="message"></lc-input>
-        <lc-input placeholder="只读" readonly></lc-input>
-        <lc-input placeholder="禁止" disabled></lc-input>
-
-        <p>{{message}}</p>
-        <h2>前置/后置标签</h2>
-        <lc-input placeholder="请输入邮箱">
-            <lc-icon name="email" slot="prepend"></lc-icon>
-        </lc-input>
-        <lc-input placeholder="请搜索">
-            <template slot="append">
-                <lc-button>搜索</lc-button>
-            </template>
-        </lc-input>
-        <lc-input placeholder="请搜索">
-            <lc-button icon="search" slot="append"></lc-button>
-        </lc-input>
-        <lc-input placeholder="请输入">
-            <template slot="prepend">www</template>
-            <template slot="append">cn</template>
-        </lc-input>
-
-        <h2>前 / 后缀内嵌 icon</h2>
-        <lc-input placeholder="请输入" prefix="search"></lc-input>
-        <lc-input placeholder="请搜索" suffix="correct"></lc-input>
-        <lc-input placeholder="请搜索" prefix="user" suffix="add"></lc-input>
-
-        <h2>3种大小</h2>
-        <lc-input placeholder="larger" size="larger"></lc-input>
-        <lc-input placeholder="default"></lc-input>
-        <lc-input placeholder="small" size="small"></lc-input>
-
         <h2>可清空</h2>
-        <lc-input placeholder="请输入" clearable value="111"></lc-input>
-
-
-        <!-- <lc-button type="primary">主色调</lc-button>
-        <lc-button type="success">成功</lc-button>
-        <lc-button type="danger">危险</lc-button>
-        <lc-button type="warning">警告</lc-button>
-        <br />
-        <lc-button>默認</lc-button>
-        <lc-button icon="setting" round>设置</lc-button>
-        <lc-button icon="setting" disabled @click="onBtnClick">设置</lc-button>
-        <lc-button icon="setting" icon-position="right">设置</lc-button>
-        <lc-button loading>加载中</lc-button>
-        <lc-button @click="onBtnClick">点击</lc-button>
-        <br />
-        <lc-button-group>
-            <lc-button icon='left'>上一页</lc-button>
-            <lc-button>确定</lc-button>
-            <lc-button icon="right" icon-position="right">下一页</lc-button>
-        </lc-button-group>
-        <br />
-
-        <lc-button size="larger">larger</lc-button>
-        <lc-button>default</lc-button>
-        <lc-button size="small">small</lc-button>
-
-        <br />
-
-        <lc-button round size="larger">larger</lc-button>
-        <lc-button round>default</lc-button>
-        <lc-button round size="small">超小按鈕</lc-button> -->
+        <lc-input placeholder="请输入" clearable v-model="message"></lc-input>
     </div>
     <script src="./src/app.js"></script>
     <script src="//at.alicdn.com/t/font_1224112_m3ucves90f.js"></script>

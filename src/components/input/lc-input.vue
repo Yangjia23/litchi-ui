@@ -26,7 +26,6 @@
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
-      @blur="onBlur"
       @change="$emit('change', $event.target.value)"
       @focus="onFocus"
       @input="$emit('input', $event.target.value)"
@@ -34,12 +33,14 @@
       @mouseleave="onMouseLeave"
     >
     <lc-icon :name="suffix" v-if="suffix && !showclear" class="lc-input__suffix-icon"></lc-icon>
-    <lc-icon
-      name="clear"
+    <i
       v-if="showclear"
       class="lc-input__suffix-icon"
+      @click="onClear"
       :class="{'clearable': showclear}"
-    ></lc-icon>
+    >
+      <lc-icon name="clear"></lc-icon>
+    </i>
     <span class="lc-input-group__addon" v-if="$slots.append">
       <slot name="append"></slot>
     </span>
@@ -95,6 +96,7 @@ export default {
         this.clearable &&
         !this.disabled &&
         !this.readonly &&
+        this.value &&
         (this.focused || this.hovering)
       );
     }
@@ -109,6 +111,10 @@ export default {
     onBlur(e) {
       this.focused = false;
       this.$emit("blur", e.target.value);
+    },
+    onClear() {
+      this.$emit('input', '')
+      this.$emit('change', '')
     },
     onFocus(e) {
       this.focused = true;

@@ -10,12 +10,15 @@
       'lc-input-group': $slots.prepend || $slots.append,
       'lc-input-group-prepend': $slots.prepend,
       'lc-input-group-append': $slots.append,
+      'lc-input-has-prefix': prefix,
+      'lc-input-has-suffix': suffix || clearable,
     }
     ]"
   >
     <span class="lc-input-group__addon" v-if="$slots.prepend">
       <slot name="prepend"></slot>
     </span>
+    <lc-icon :name="prefix" v-if="prefix" class="lc-input__prefix-icon"></lc-icon>
     <input
       class="lc-input__inner"
       :type="type"
@@ -23,7 +26,18 @@
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
+      @blur="onBlur"
+      @focus="onFoucs"
+      @mouseentry="onMouseEnter"
+      @mouseleave="onMouseLeave"
     >
+    <lc-icon :name="suffix" v-if="suffix && !showclear" class="lc-input__suffix-icon"></lc-icon>
+    <lc-icon
+      name="clear"
+      v-if="showclear"
+      class="lc-input__suffix-icon"
+      :class="{'clearable': showclear}"
+    ></lc-icon>
     <span class="lc-input-group__addon" v-if="$slots.append">
       <slot name="append"></slot>
     </span>
@@ -51,6 +65,10 @@ export default {
       type: String,
       default: "text"
     },
+    clearable: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -58,13 +76,53 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    prefix: {
+      type: String
+    },
+    suffix: {
+      type: String
     }
   },
   components: {
     "lc-icon": Icon
   },
+  computed: {
+    showclear() {
+      return (
+        this.clearable &&
+        !this.disabled &&
+        !this.readonly &&
+        (this.focused || this.hovering)
+      );
+    }
+  },
   data() {
-    return {};
+    return {
+      focused: false,
+      hovering: false
+    };
+  },
+  methods: {
+    onBlur() {
+      this.focused = false;
+      this.$emit("blur");
+    },
+    onFoucs() {
+      this.focused = true;
+      this.$emit("focus");
+    },
+    /**
+     * mouseover,mouseenter 的区别在于 mouseover 事件会冒泡
+     */
+    onMouseEnter() {
+      this.hovering = true;
+      this.$emit("mouseenter");
+    },
+    onMouseLeave() {
+      this.hovering = false;
+      this.$emit("mouseover");
+    }
   }
 };
 </script>
@@ -115,6 +173,7 @@ export default {
     border: 1px solid @border-color;
     border-radius: @border-radius;
     padding: 0 8px;
+    box-sizing: border-box;
 
     &:hover {
       border-color: @border-color-hover;
@@ -151,12 +210,12 @@ export default {
     justify-content: center;
     align-items: center;
 
-
-
-    .lc-button, .lc-button:hover, .lc-button:active{
-        background-color: transparent !important;
-        border-color: transparent !important;
-        margin: -10px;
+    .lc-button,
+    .lc-button:hover,
+    .lc-button:active {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      margin: -10px;
     }
   }
 
@@ -173,6 +232,35 @@ export default {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       margin-left: -1px;
+    }
+  }
+}
+
+.lc-input-has-prefix {
+  position: relative;
+  .lc-input__inner {
+    padding-left: 26px;
+  }
+  .lc-input__prefix-icon {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    margin-top: -8px;
+  }
+}
+
+.lc-input-has-suffix {
+  position: relative;
+  .lc-input__inner {
+    padding-right: 26px;
+  }
+  .lc-input__suffix-icon {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    margin-top: -8px;
+    &.clearable {
+      cursor: pointer;
     }
   }
 }

@@ -27,9 +27,9 @@
       :disabled="disabled"
       :readonly="readonly"
       @blur="onBlur"
-      @change="$emit('change', $event)"
+      @change="$emit('change', $event.target.value)"
       @focus="onFocus"
-      @input="$emit('input', $event)"
+      @input="$emit('input', $event.target.value)"
       @mouseentry="onMouseEnter"
       @mouseleave="onMouseLeave"
     >
@@ -108,11 +108,11 @@ export default {
   methods: {
     onBlur(e) {
       this.focused = false;
-      this.$emit("blur", e);
+      this.$emit("blur", e.target.value);
     },
     onFocus(e) {
       this.focused = true;
-      this.$emit("focus", e);
+      this.$emit("focus", e.target.value);
     },
     /**
      * mouseover,mouseenter 的区别在于 mouseover 事件会冒泡

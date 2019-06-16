@@ -55,11 +55,11 @@
         <lc-input placeholder="请输入"></lc-input>
         <lc-input placeholder="请输入密码" type="password"></lc-input>
         <lc-input placeholder="请输入数字" type="number"></lc-input>
-        <lc-input placeholder="" value="默认值 1"></lc-input>
+        <lc-input placeholder="" v-model="message"></lc-input>
         <lc-input placeholder="只读" readonly></lc-input>
         <lc-input placeholder="禁止" disabled></lc-input>
 
-
+        <p>{{message}}</p>
         <h2>前置/后置标签</h2>
         <lc-input placeholder="请输入邮箱">
             <lc-icon name="email" slot="prepend"></lc-icon>

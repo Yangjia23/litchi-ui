@@ -11,6 +11,11 @@ Vue.component('lc-input', LcInput)
 
 new Vue({
     el: '#app',
+    data () {
+        return {
+            message: '111'
+        }
+    },
     methods: {
         onBtnClick (e) {
             console.log(e)

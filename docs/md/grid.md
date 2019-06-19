@@ -57,4 +57,12 @@
         <lc-col span="6">6</lc-col>
         <lc-col offset="6" span="6">6</lc-col>
     </lc-row>
+
+    <h2>响应式</h2>
+    <lc-row>
+        <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
+        <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color:#FF9900; height: 20px;"></div></lc-col>
+        <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
+        <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #FF9900; height: 20px;"></div></lc-col>
+    </lc-row>
 ```

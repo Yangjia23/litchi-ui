@@ -18,8 +18,8 @@ export default {
   computed: {
     rowStyle() {
       return {
-        paddingLeft: -this.gutter / 2 + "px",
-        paddingRight: -this.gutter / 2 + "px"
+        marginLeft: -this.gutter / 2 + "px",
+        marginRight: -this.gutter / 2 + "px"
       };
     }
   }

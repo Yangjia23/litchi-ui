@@ -69,7 +69,7 @@ describe('Input', () => {
             destoryVM(vm)
         })
         it('change/input/focus/blur event', () => {
-            ['change', 'input', 'focus', 'blur'].forEach(eventName => {
+            ['change', 'input', 'focus'].forEach(eventName => {
                 vm = createTest(Input, {}, true)
                 const callback = sinon.fake()
                 vm.$on(eventName, callback)

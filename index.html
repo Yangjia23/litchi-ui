@@ -49,12 +49,41 @@
             border: 1px solid #333;
             background-color: #32CCBC;
             height: 20px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 
 <body>
     <div id="app">
+        <lc-row>
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+            <lc-col span="6">
+                <div class="demo"></div>
+            </lc-col>
+        </lc-row>
         <h2>响应式</h2>
         <lc-row>
             <lc-col span="12" offset="12" :xs="{span: 8, offset: 6}">

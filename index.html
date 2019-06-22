@@ -41,10 +41,6 @@
             --color-text-secondary: #999;
         }
 
-        #app {
-            padding: 20px;
-        }
-
         .demo {
             border: 1px solid #333;
             background-color: #32CCBC;
@@ -56,23 +52,48 @@
 
 <body>
     <div id="app">
-        <lc-row>
-            <lc-col span="2">2</lc-col>
-            <lc-col span="22">22</lc-col>
-        </lc-row>
+        <!-- <lc-layout style="height: 100vh">
+            <lc-header><div style="background-color: #999">Header</div></lc-header>
+            <lc-main><div style="background-color: #666; height: 100%;">Main</div></lc-main>
+            <lc-footer><div style="background-color: #999">Footer</div></lc-footer>
+        </lc-layout> -->
 
-        <lc-row>
-            <lc-col span="6">6</lc-col>
-            <lc-col span="6" offset="6">6</lc-col>
-        </lc-row>
+        <!-- <lc-layout style="height: 100vh">
+            <lc-header><div style="background-color: #999">Header</div></lc-header>
+            <lc-layout>
+                <lc-aside><div style="background-color: #333; height: 100%;">Aside</div></lc-aside>
+                <lc-main><div style="background-color: #666; height: 100%;">Main</div></lc-main>
+            </lc-layout>
+            <lc-footer><div style="background-color: #999">Footer</div></lc-footer>
+        </lc-layout> -->
 
-        <h2>响应式</h2>
-        <lc-row>
-            <lc-col span="12" offset="12" :xs="{span: 8, offset: 6}">
-                <div class="demo"></div>
-            </lc-col>
-        </lc-row>
+        <!-- <lc-layout style="height: 100vh">
+            <lc-header>
+                <div style="background-color: #999">Header</div>
+            </lc-header>
+            <lc-layout>
+                <lc-main>
+                    <div style="background-color: #666; height: 100%;">Main</div>
+                </lc-main>
+                <lc-aside>
+                    <div style="background-color: #333; height: 100%;">Aside</div>
+                </lc-aside>
+            </lc-layout>
+            <lc-footer>
+                <div style="background-color: #999">Footer</div>
+            </lc-footer>
+        </lc-layout> -->
 
+        <lc-layout style="height: 100vh">
+            <lc-aside>
+                <div style="background: #999; height: 100%;width: 180px;">Aside</div>
+            </lc-aside>
+            <lc-layout>
+                <lc-header>Header</lc-header>
+                <lc-main>Main</lc-main>
+                <lc-footer>Footer</lc-footer>
+            </lc-layout>
+        </lc-layout>
     </div>
     <script src="./src/app.js"></script>
     <script src="//at.alicdn.com/t/font_1224112_m3ucves90f.js"></script>

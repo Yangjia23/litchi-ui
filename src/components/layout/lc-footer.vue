@@ -4,3 +4,8 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'LcFooter'
+}
+</script>

@@ -6,27 +6,26 @@ Vue.use(Litchi)
 
 new Vue({
     el: '#app',
-    props: {
-        autoClose: {
-            type: Boolean,
-            default: true
-        },
-        duration: {
-            type: Number,
-            default: 3
-        }
-    },
     data() {
         return {
-            message: '111'
+            message: ''
         }
     },
     methods: {
         onBtnClick(e) {
             console.log(e)
         },
-        onClick () {
-            this.$toast('操作成功')
+        onClick() {
+            // this.$toast('操作成功')
+            this.$toast({
+                showClose: true,
+                type: 'success',
+                message: '111222',
+                position: 'middle',
+                onClose(aaa) {
+                    // console.log(aaa)
+                }
+            })
         }
     }
 })

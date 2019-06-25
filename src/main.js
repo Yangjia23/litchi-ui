@@ -29,11 +29,10 @@ const components = [
 
 const install =  (Vue, opts = {}) => {
     components.forEach(component => {
-        console.log(component.name)
         Vue.component(component.name, component)
     })
     Vue.prototype.$toast = Toast
-    
+
 }
 
 export default {

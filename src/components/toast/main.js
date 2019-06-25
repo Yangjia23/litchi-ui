@@ -5,6 +5,7 @@ const ToastConstructor = Vue.extend(LcToast) // 使用 Vue 构造函数，创建
 
 let instance
 const Toast = function (options) {
+    console.log(options)
     options = options || {}
     if (typeof options === 'string') {
         options = {

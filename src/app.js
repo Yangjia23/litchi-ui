@@ -15,17 +15,26 @@ new Vue({
         onBtnClick(e) {
             console.log(e)
         },
-        onClick() {
-            // this.$toast('操作成功')
+        onClick1() {
             this.$toast({
-                showClose: true,
+                type: 'success',
+                message: '111222',
+                position: 'top',
+            })
+        },
+        onClick2() {
+            this.$toast({
                 type: 'success',
                 message: '111222',
                 position: 'middle',
-                onClose(aaa) {
-                    // console.log(aaa)
-                }
             })
-        }
+        },
+        onClick3() {
+            this.$toast({
+                type: 'success',
+                message: '111222',
+                position: 'bottom',
+            })
+        },
     }
 })

@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Button from './components/button';
 import ButtonGroup from './components/button-group';
 import Icon from './components/icon';

@@ -15,9 +15,23 @@ const Toast = function (options) {
     instance = new ToastConstructor({
         data: options
     })
-    instance.$slots.default = [instance.message]
+    // instance.$slots.default = [instance.message]
     instance.$mount()
     document.body.appendChild(instance.$el)
 }
+
+const typeList = ['success', 'error', 'warning', 'info']
+typeList.forEach(type => {
+    Toast[type] = options => {
+        options = options || {}
+        if (typeof options === 'string') {
+            options = {
+                message: options
+            }
+        }
+        options.type = type
+        return Toast(options)
+    }
+});
 
 export default Toast

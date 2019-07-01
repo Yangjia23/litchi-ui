@@ -73,10 +73,10 @@ export default {
       this.timer = null;
     },
     handleClose() {
-      this.close();
       if (typeof this.onClose === "function") {
         this.onClose(this);
       }
+      this.close();
     }
   }
 };
@@ -84,18 +84,34 @@ export default {
 
 <style lang="less" scoped>
 @keyframes slide-down {
-  from { opacity: 0; transform: translateY(-100%); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(100%); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fead-in {
-  from { opacity: 0;}
-  to { opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @animation-duration: 300ms;
@@ -105,7 +121,7 @@ export default {
   left: 50%;
   transform: translateX(-50%);
 
-  &__inner{
+  &__inner {
     z-index: 1010;
     box-sizing: border-box;
     margin: 0;
@@ -122,19 +138,19 @@ export default {
 
   &__position-top {
     top: 16px;
-    .lc-toast__inner{
+    .lc-toast__inner {
       animation: slide-down @animation-duration;
     }
   }
   &__position-middle {
     top: 50%;
-    .lc-toast__inner{
+    .lc-toast__inner {
       animation: fead-in @animation-duration;
     }
   }
   &__position-bottom {
     bottom: 16px;
-    .lc-toast__inner{
+    .lc-toast__inner {
       animation: slide-up @animation-duration;
     }
   }

@@ -10,6 +10,13 @@ import {
     Footer,
     Layout
 } from './components/layout';
+import {
+    Tabs,
+    TabHead,
+    TabBody,
+    TabItem,
+    TabPane,
+} from './components/tabs';
 import Toast from './components/toast';
 
 const components = [
@@ -24,6 +31,11 @@ const components = [
     Main,
     Footer,
     Layout,
+    Tabs,
+    TabHead,
+    TabBody,
+    TabItem,
+    TabPane,
 ]
 
 const install =  (Vue, opts = {}) => {

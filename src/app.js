@@ -8,10 +8,14 @@ new Vue({
     el: '#app',
     data() {
         return {
-            message: ''
+            message: '',
+            activeTab: 'woman'
         }
     },
     methods: {
+        handleTabClick () {
+
+        },
         onBtnClick(e) {
             console.log(e)
         },

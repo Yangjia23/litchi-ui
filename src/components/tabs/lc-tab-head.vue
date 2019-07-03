@@ -17,13 +17,14 @@ export default {
 <style lang="less" scoped>
 @tab-head-height: 40px;
 .lc-tab-head{
-    border: 1px solid red;
+    border-bottom: 2px solid#e4e7ed;
     height: @tab-head-height;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     > .actions-wrapper{
         margin-left: auto;
+        padding: 0 1em;
     }
 }
 </style>

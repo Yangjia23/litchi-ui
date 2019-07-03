@@ -12,6 +12,13 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    type: {
+      type: String,
+      default: "line",
+      validator(value) {
+        return ["line", "card"].includes(value);
+      }
     }
   },
   provide() {

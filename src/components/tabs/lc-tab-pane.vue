@@ -29,5 +29,6 @@ export default {
 
 <style lang="less" scoped>
 .lc-tab-pane {
+    padding: 1em;
 }
 </style>

@@ -54,8 +54,11 @@
     <div id="app">
         <lc-tabs v-model="activeTab" @tab-click="handleTabClick">
             <lc-tab-head>
-                <lc-tab-item name="woman">美女</lc-tab-item>
-                <lc-tab-item name="news">新闻</lc-tab-item>
+                <lc-tab-item name="woman">
+                    <lc-icon name="setting"></lc-icon>
+                    美女
+                </lc-tab-item>
+                <lc-tab-item name="news" disabled>新闻</lc-tab-item>
                 <lc-tab-item name="sports">体育</lc-tab-item>
                 <template slot="actions">
                     <lc-button>设置</lc-button>

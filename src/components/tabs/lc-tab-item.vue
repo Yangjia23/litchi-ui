@@ -39,7 +39,7 @@ export default {
   methods: {
     onTabClick() {
       if (this.disabled) return false;
-      this.eventHub.$emit("selected", this.name);
+      this.eventHub.$emit("selected", this.name, this);
     }
   }
 };
@@ -55,26 +55,8 @@ export default {
   align-items: center;
   position: relative;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 0;
-    height: 100%;
-    border-bottom: 2px solid #409eff;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  }
-
   &.is-active {
-    color: #409eff;
-    &::before {
-      width: 100%;
-      left: 0;
-    }
-    ~ .lc-tab-item::before {
-      left: 0;
-    }
+    color: var(--color-primary);
   }
 
   &.is-disabled {
@@ -82,7 +64,7 @@ export default {
     cursor: not-allowed;
   }
   &:not(.is-disabled):hover {
-    color: #409eff;
+    color: var(--color-primary);
   }
 }
 </style>

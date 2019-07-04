@@ -28,7 +28,8 @@ export default {
   },
   data() {
     return {
-      eventHub: new Vue()
+      eventHub: new Vue(),
+      panes: [],
     };
   },
   created() {
@@ -39,7 +40,15 @@ export default {
     });
   },
   mounted() {
-    this.eventHub.$emit("selected", this.value);
+    this.calcTabInstances()
+    const currentTab = this.panes.find(vm => vm.name === this.value)
+    this.eventHub.$emit("selected", this.value, currentTab);
+  },
+  methods: {
+    calcTabInstances () {
+      const tabHead = this.$children.find(vm => vm.$options.name === 'LcTabHead')
+      this.panes = tabHead.$children
+    }
   }
 };
 </script>

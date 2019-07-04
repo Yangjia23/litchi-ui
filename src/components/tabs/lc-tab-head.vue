@@ -1,7 +1,7 @@
 <template>
   <div class="lc-tab-head" ref="lcTabHead">
     <slot></slot>
-    <div class="active-line" ref="activeLine"></div>
+    <div class="active-line" ref="activeLine" v-if="!typeCard"></div>
     <div class="actions-wrapper">
         <slot name="actions"></slot>
     </div>
@@ -11,10 +11,25 @@
 <script>
 export default {
   name: "LcTabHead",
-  inject: ['eventHub'],
+  inject: ['eventHub', 'type'],
+  props: {
+    typeCard: {
+      default () {
+        return this.type === 'card'
+      }
+    }
+  },
+  computed: {
+    tabHeadClass () {
+      return {
+        'lc-tab-head': true,
+        'lc-tab-head-card': this.typeCard
+      }
+    }
+  },
   mounted () {
     const {left: tabHeadLeft} = this.$refs.lcTabHead.getBoundingClientRect()
-    this.eventHub.$on("selected", (name, vm) => {
+    !this.typeCard && this.eventHub.$on("selected", (name, vm) => {
       const {width, left} = vm.$el.getBoundingClientRect()
       this.$refs.activeLine.style.width = `${width}px`
       this.$refs.activeLine.style.left = `${left - tabHeadLeft}px`
@@ -24,10 +39,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@tab-head-height: 40px;
 .lc-tab-head{
     border-bottom: 1px solid#e4e7ed;
-    height: @tab-head-height;
     box-sizing: border-box;
     display: flex;
     align-items: center;

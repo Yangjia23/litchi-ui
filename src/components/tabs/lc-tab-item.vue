@@ -46,14 +46,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@tab-head-height : 40px;
 .lc-tab-item {
   flex-shrink: 0;
   padding: 0 1.5em;
   cursor: pointer;
-  height: 100%;
+  height: @tab-head-height;
   display: flex;
   align-items: center;
   position: relative;
+  margin-bottom: -1px;
 
   &.is-active {
     color: var(--color-primary);

@@ -57,7 +57,7 @@
 <body>
     <div id="app">
         <h2>基本使用</h2>
-        <lc-tabs v-model="activeTab" @tab-click="handleTabClick">
+        <lc-tabs value="woman" @tab-click="handleTabClick">
             <lc-tab-head>
                 <lc-tab-item name="woman">美女</lc-tab-item>
                 <lc-tab-item name="news">新闻</lc-tab-item>
@@ -71,7 +71,7 @@
         </lc-tabs>
 
         <h2>禁用某一项</h2>
-        <lc-tabs v-model="activeTab">
+        <lc-tabs value="sports">
             <lc-tab-head>
                 <lc-tab-item name="woman">美女</lc-tab-item>
                 <lc-tab-item name="news" disabled>新闻</lc-tab-item>
@@ -85,11 +85,11 @@
         </lc-tabs>
 
         <h2>自定义标签页</h2>
-        <lc-tabs v-model="activeTab">
+        <lc-tabs value="sports">
             <lc-tab-head>
                 <lc-tab-item name="woman">美女</lc-tab-item>
                 <lc-tab-item name="news">新闻</lc-tab-item>
-                <lc-tab-item name="sports"><lc-icon name="setting"></lc-icon>设置</lc-tab-item>
+                <lc-tab-item name="sports" icon="setting">设置</lc-tab-item>
             </lc-tab-head>
             <lc-tab-body>
                 <lc-tab-pane name="woman">美女相关内容</lc-tab-pane>
@@ -99,7 +99,7 @@
         </lc-tabs>
 
         <h2>扩展</h2>
-        <lc-tabs v-model="activeTab">
+        <lc-tabs value="sports">
             <lc-tab-head>
                 <lc-tab-item name="woman">美女</lc-tab-item>
                 <lc-tab-item name="news">新闻</lc-tab-item>
@@ -116,7 +116,7 @@
         </lc-tabs>
 
         <h2>卡片风格</h2>
-        <lc-tabs v-model="activeTab" type="card">
+        <lc-tabs value="news" type="card">
             <lc-tab-head>
                 <lc-tab-item name="woman">美女</lc-tab-item>
                 <lc-tab-item name="news">新闻</lc-tab-item>

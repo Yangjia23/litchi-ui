@@ -1,6 +1,7 @@
 <template>
   <div class="lc-tab-item" @click="onTabClick" :class="tabItemClass">
-    <slot></slot>
+    <lc-icon :name="icon" v-if="icon" class="lc-tab-icon"></lc-icon>
+    <span><slot></slot></span>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ export default {
       type: String,
       required: true
     },
+    icon: String,
     disabled: {
       type: Boolean,
       default: false
@@ -52,10 +54,13 @@ export default {
   padding: 0 1.5em;
   cursor: pointer;
   height: @tab-head-height;
-  display: flex;
+  line-height: 1;
+  display: inline-flex;
   align-items: center;
   position: relative;
   margin-bottom: -1px;
+  font-size: 14px;
+  vertical-align: middle;
 
   &.is-active {
     color: var(--color-primary);
@@ -67,6 +72,10 @@ export default {
   }
   &:not(.is-disabled):hover {
     color: var(--color-primary);
+  }
+
+  > .lc-tab-icon{
+    margin-right: .2em;
   }
 }
 </style>

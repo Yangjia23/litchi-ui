@@ -28,7 +28,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'default',
+      default: "default"
     },
     icon: {
       type: String
@@ -67,6 +67,27 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@button-height-larger: 36px;
+@button-height: 32px;
+@button-height-small: 28px;
+@button-size-larger: 16px;
+@button-size: 14px;
+@button-size-small: 12px;
+@button-bg: white;
+@button-active-bg: #eee;
+@border-radius: 4px;
+@color: #333;
+@border-color: #999;
+@border-color-hover: #666;
+
+@color-primary: #20b2aa;
+@color-primary-plain: #32ccbc;
+@color-white: #fff;
+@color-black: #000;
+@color-success: #67c23a;
+@color-danger: #ff3333;
+@color-warning: #ff9900;
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -79,12 +100,12 @@ export default {
 @prefixCls: lc-button;
 
 .@{prefixCls} {
-  font-size: var(--button-size);
-  height: var(--button-height);
+  font-size: @button-size;
+  height: @button-height;
   line-height: 1;
   padding: 0 1em;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
+  border-radius: @border-radius;
+  border: 1px solid @border-color;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -96,46 +117,46 @@ export default {
   }
 
   // color
-  &_primary{
-    color: var(--color-white);
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    &:hover{
+  &_primary {
+    color: @color-white;
+    background: @color-primary;
+    border-color: @color-primary;
+    &:hover {
       background: #25c3cc;
       border-color: #25c3cc;
     }
   }
 
-  &_default{
-    border: 1px solid var(--border-color);
-    background: var(--button-bg);
+  &_default {
+    border: 1px solid @border-color;
+    background: @button-bg;
 
     &:not(.@{prefixCls}_loading):not(.is-disabled) {
-      &:hover{
-        border-color: var(--border-color-hover);
+      &:hover {
+        border-color: @border-color-hover;
       }
-      &:active{
-        background-color: var(--button-active-bg);
+      &:active {
+        background-color: @button-active-bg;
       }
     }
   }
 
-  &_success{
-    color: var(--color-white);
-    background: var(--color-success);
-    border-color: var(--color-success);
+  &_success {
+    color: @color-white;
+    background: @color-success;
+    border-color: @color-success;
   }
 
-  &_danger{
-    color: var(--color-white);
-    background: var(--color-danger);
-    border-color: var(--color-danger);
+  &_danger {
+    color: @color-white;
+    background: @color-danger;
+    border-color: @color-danger;
   }
 
-  &_warning{
-    color: var(--color-white);
-    background: var(--color-warning);
-    border-color: var(--color-warning);
+  &_warning {
+    color: @color-white;
+    background: @color-warning;
+    border-color: @color-warning;
   }
 
   &:focus {
@@ -161,14 +182,14 @@ export default {
     }
   }
 
-  &.is-loading{
-    > .lc-icon-loading{
+  &.is-loading {
+    > .lc-icon-loading {
       animation: spin 1.5s infinite linear;
     }
   }
 
   &.is-round {
-    border-radius: var(--button-height);
+    border-radius: @button-height;
   }
 
   &.is-disabled {
@@ -181,19 +202,19 @@ export default {
 
   // size
   &_larger {
-    height: var(--button-height-larger);
-    font-size: var(--button-size-larger);
+    height: @button-height-larger;
+    font-size: @button-size-larger;
 
     &.is-round {
-      border-radius: var(--button-height-larger);
+      border-radius: @button-height-larger;
     }
   }
 
   &_small {
-    height: var(--button-height-small);
-    font-size: var(--button-size-small);
+    height: @button-height-small;
+    font-size: @button-size-small;
     &.is-round {
-      border-radius: var(--button-height-small);
+      border-radius: @button-height-small;
     }
   }
 }

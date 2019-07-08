@@ -38,10 +38,12 @@ export default {
   },
   methods: {
     generateClasses(obj, str = '') {
+      console.log(obj)
       if (!obj) return [];
       let arr = []
       if (obj.span) arr.push(`lc-col_${str}${obj.span}`)
       if (obj.offset) arr.push(`lc-col-offset_${str}${obj.offset}`)
+      console.log(arr)
       return arr;
     }
   }
@@ -52,7 +54,7 @@ export default {
 <style lang="less" scoped>
 .lc-col {
   box-sizing: border-box;
-  width: 50%;
+  // width: 50%;
   line-height: 30px;
   text-align: center;
   .generate-columns(@n, @size: _, @i: 1) when (@i =< @n) {

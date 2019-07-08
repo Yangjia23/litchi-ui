@@ -56,78 +56,68 @@
 
 <body>
     <div id="app">
-        <h2>基本使用</h2>
-        <lc-tabs value="woman" @tab-click="handleTabClick">
-            <lc-tab-head>
-                <lc-tab-item name="woman">美女</lc-tab-item>
-                <lc-tab-item name="news">新闻</lc-tab-item>
-                <lc-tab-item name="sports">体育</lc-tab-item>
-            </lc-tab-head>
-            <lc-tab-body>
-                <lc-tab-pane name="woman">美女相关内容</lc-tab-pane>
-                <lc-tab-pane name="news">新闻相关内容</lc-tab-pane>
-                <lc-tab-pane name="sports">体育相关内容</lc-tab-pane>
-            </lc-tab-body>
-        </lc-tabs>
+        <h2>普通使用</h2>
+        <lc-row>
+            <lc-col span="12"><div style="background-color: #20B2AA">12</div></lc-col>
+            <lc-col span="12"><div style="background-color:#67c23a">12</div></lc-col>
+        </lc-row>
+        <!-- <lc-row>
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+        </lc-row> -->
 
-        <h2>禁用某一项</h2>
-        <lc-tabs value="sports">
-            <lc-tab-head>
-                <lc-tab-item name="woman">美女</lc-tab-item>
-                <lc-tab-item name="news" disabled>新闻</lc-tab-item>
-                <lc-tab-item name="sports">体育</lc-tab-item>
-            </lc-tab-head>
-            <lc-tab-body>
-                <lc-tab-pane name="woman">美女相关内容</lc-tab-pane>
-                <lc-tab-pane name="news">新闻相关内容</lc-tab-pane>
-                <lc-tab-pane name="sports">体育相关内容</lc-tab-pane>
-            </lc-tab-body>
-        </lc-tabs>
+        <h2>位移</h2>
 
-        <h2>自定义标签页</h2>
-        <lc-tabs value="sports">
-            <lc-tab-head>
-                <lc-tab-item name="woman">美女</lc-tab-item>
-                <lc-tab-item name="news">新闻</lc-tab-item>
-                <lc-tab-item name="sports" icon="setting">设置</lc-tab-item>
-            </lc-tab-head>
-            <lc-tab-body>
-                <lc-tab-pane name="woman">美女相关内容</lc-tab-pane>
-                <lc-tab-pane name="news">新闻相关内容</lc-tab-pane>
-                <lc-tab-pane name="sports">体育相关内容</lc-tab-pane>
-            </lc-tab-body>
-        </lc-tabs>
+        <h2>间隔</h2>
+        <!-- <lc-row gutter="20">
+            <lc-col>12</lc-col>
+            <lc-col>12</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+            <lc-col>8</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+            <lc-col>6</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col span="2">2</lc-col>
+            <lc-col span="22">22</lc-col>
+        </lc-row>
+        <lc-row gutter="20">
+            <lc-col span="6">6</lc-col>
+            <lc-col offset="6" span="6">6</lc-col>
+        </lc-row> -->
 
-        <h2>扩展</h2>
-        <lc-tabs value="sports">
-            <lc-tab-head>
-                <lc-tab-item name="woman">美女</lc-tab-item>
-                <lc-tab-item name="news">新闻</lc-tab-item>
-                <lc-tab-item name="sports">体育</lc-tab-item>
-                <template slot="actions">
-                    <lc-button type="primary">更多</lc-button>
-                </template>
-            </lc-tab-head>
-            <lc-tab-body>
-                <lc-tab-pane name="woman">美女相关内容</lc-tab-pane>
-                <lc-tab-pane name="news">新闻相关内容</lc-tab-pane>
-                <lc-tab-pane name="sports">体育相关内容</lc-tab-pane>
-            </lc-tab-body>
-        </lc-tabs>
+        <h2>响应式</h2>
+        <!-- <lc-row>
+            <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
+            <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color:#FF9900; height: 20px;"></div></lc-col>
+            <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
+            <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #FF9900; height: 20px;"></div></lc-col>
+        </lc-row> -->
 
-        <h2>卡片风格</h2>
-        <lc-tabs value="news" type="card">
-            <lc-tab-head>
-                <lc-tab-item name="woman">美女</lc-tab-item>
-                <lc-tab-item name="news">新闻</lc-tab-item>
-                <lc-tab-item name="sports">体育</lc-tab-item>
-            </lc-tab-head>
-            <lc-tab-body>
-                <lc-tab-pane name="woman">美女相关内容</lc-tab-pane>
-                <lc-tab-pane name="news">新闻相关内容</lc-tab-pane>
-                <lc-tab-pane name="sports">体育相关内容</lc-tab-pane>
-            </lc-tab-body>
-        </lc-tabs>
+        <lc-row>
+                <lc-col :xs="{span: 8}" :sm="{span: 6}" :md="{span: 4}" :lg="{span: 3}" :xl="{span: 1}">
+                    <div style="background-color: #67c23a; height: 20px;">1</div>
+                </lc-col>
+                <lc-col :xs="{span: 4}" :sm="{span: 6}" :md="{span: 8}" :lg="{span: 9}" :xl="{span: 11}">
+                    <div style="background-color: #67c23a; height: 20px;">1</div>
+                </lc-col>
+                <lc-col :xs="{span: 4}" :sm="{span: 6}" :md="{span: 8}" :lg="{span: 9}" :xl="{span: 11}">
+                    <div style="background-color: #67c23a; height: 20px;">1</div>
+                </lc-col>
+                <lc-col :xs="{span: 8}" :sm="{span: 6}" :md="{span: 4}" :lg="{span: 3}" :xl="{span: 1}">
+                    <div style="background-color: #67c23a; height: 20px;">1</div>
+                </lc-col>
+            </lc-row>
+
+        <lc-button @click="handleClick">click</lc-button>
     </div>
 
     <script src="./src/app.js"></script>

@@ -5,9 +5,9 @@
         <lc-col><div style="background-color:#67c23a">12</div></lc-col>
     </lc-row>
     <lc-row>
-        <lc-col>8</lc-col>
-        <lc-col>8</lc-col>
-        <lc-col>8</lc-col>
+        <lc-col span="8">8</lc-col>
+        <lc-col span="8">8</lc-col>
+        <lc-col span="8">8</lc-col>
     </lc-row>
     <lc-row>
         <lc-col>6</lc-col>
@@ -26,8 +26,8 @@
         <lc-col offset="6" span="6">6</lc-col>
     </lc-row>
     <lc-row>
-        <lc-col>4</lc-col>
-        <lc-col offset="16">4</lc-col>
+        <lc-col span="4">4</lc-col>
+        <lc-col offset="16" span="4">4</lc-col>
     </lc-row>
     <lc-row>
         <lc-col offset="6" span="12">12</lc-col>
@@ -60,9 +60,17 @@
 
     <h2>响应式</h2>
     <lc-row>
-        <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
-        <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color:#FF9900; height: 20px;"></div></lc-col>
-        <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
-        <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #FF9900; height: 20px;"></div></lc-col>
+        <lc-col :xs="{span: 8}" :sm="{span: 6}" :md="{span: 4}" :lg="{span: 3}" :xl="{span: 1}">
+            <div style="background-color: #67c23a; height: 20px;">1</div>
+        </lc-col>
+        <lc-col :xs="{span: 4}" :sm="{span: 6}" :md="{span: 8}" :lg="{span: 9}" :xl="{span: 11}">
+            <div style="background-color: #67c23a; height: 20px;">1</div>
+        </lc-col>
+        <lc-col :xs="{span: 4}" :sm="{span: 6}" :md="{span: 8}" :lg="{span: 9}" :xl="{span: 11}">
+            <div style="background-color: #67c23a; height: 20px;">1</div>
+        </lc-col>
+        <lc-col :xs="{span: 8}" :sm="{span: 6}" :md="{span: 4}" :lg="{span: 3}" :xl="{span: 1}">
+            <div style="background-color: #67c23a; height: 20px;">1</div>
+        </lc-col>
     </lc-row>
 ```

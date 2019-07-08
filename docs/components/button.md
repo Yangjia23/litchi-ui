@@ -96,7 +96,7 @@ export default {
 
 ### API
 
-#### Button props
+#### Button Attribute
 | 属性     | 说明     | 类型    | 可选值                                      | 默认值    |
 | :------- | :------- | :------ | :------------------------------------------ | :-------- |
 | type     | 按钮类型 | String  | default / primary / success / danger / warning | `default` |

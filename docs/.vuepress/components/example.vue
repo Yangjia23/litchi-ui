@@ -30,7 +30,7 @@ export default {
     };
   },
   mounted () {
-    console.log(this.$slots.default)
+    // console.log(this.$slots.default)
   },
   methods: {
     toggle() {

@@ -15,7 +15,6 @@ export default {
         }
     },
     mounted () {
-        console.log(this.$children)
         const children = this.$children
         children.forEach(vm => {
             if (vm.$options.name === 'LcAside') {
@@ -30,7 +29,6 @@ export default {
 .lc-layout{
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
     flex-grow: 1;
     &_has-aside{
         flex-direction: row;

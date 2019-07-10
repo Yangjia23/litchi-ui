@@ -139,13 +139,27 @@ export default {
 @lc-input-height: 32px;
 @lc-input-height-larger: 36px;
 @lc-input-height-small: 28px;
-@border-color: #999;
+@lc-input-placeholder-color: #0000004d;
+@border-color: #e8e8e8;
 @border-color-disabled: #aaa;
-@border-color-hover: #666;
+@border-color-hover: #c0c4cc;
 @border-color-focus: #20b2aa;
 @bg-color-disabled: #eee;
 @border-radius: 4px;
-
+.placeholder(@rules) {
+  &::-webkit-input-placeholder {
+      @rules();
+  }
+  &:-moz-placeholder {
+      @rules();
+  }
+  &::-moz-placeholder {
+      @rules();
+  }
+  &:-ms-input-placeholder {
+      @rules();
+  }
+}
 .lc-input {
   display: inline-block;
   vertical-align: top;
@@ -183,9 +197,15 @@ export default {
     padding: 0 8px;
     box-sizing: border-box;
 
+    .placeholder({
+      color: @lc-input-placeholder-color;
+      text-transform: uppercase;
+    });
+
     &:hover {
       border-color: @border-color-hover;
     }
+
     &:focus {
       border-color: @border-color-focus;
       outline: none;

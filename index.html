@@ -57,65 +57,43 @@
 <body>
     <div id="app">
         <h2>普通使用</h2>
-        <lc-row>
-            <lc-col span="12"><div style="background-color: #20B2AA">12</div></lc-col>
-            <lc-col span="12"><div style="background-color:#67c23a">12</div></lc-col>
-        </lc-row>
-        <!-- <lc-row>
-            <lc-col>8</lc-col>
-            <lc-col>8</lc-col>
-            <lc-col>8</lc-col>
-        </lc-row> -->
+        <lc-input placeholder="请输入"></lc-input>
+        <lc-input placeholder="请输入密码" type="password"></lc-input>
+        <lc-input placeholder="请输入数字" type="number"></lc-input>
+        <lc-input placeholder="" v-model="message"></lc-input>
+        <lc-input placeholder="只读" readonly></lc-input>
+        <lc-input placeholder="禁止" disabled></lc-input>
 
-        <h2>位移</h2>
+        <p>{{message}}</p>
+        <h2>前置/后置标签</h2>
+        <lc-input placeholder="请输入邮箱">
+            <lc-icon name="email" slot="prepend"></lc-icon>
+        </lc-input>
+        <lc-input placeholder="请搜索">
+            <template slot="append">
+                <lc-button>搜索</lc-button>
+            </template>
+        </lc-input>
+        <lc-input placeholder="请搜索">
+            <lc-button icon="search" slot="append"></lc-button>
+        </lc-input>
+        <lc-input placeholder="请输入">
+            <template slot="prepend">www</template>
+            <template slot="append">cn</template>
+        </lc-input>
 
-        <h2>间隔</h2>
-        <!-- <lc-row gutter="20">
-            <lc-col>12</lc-col>
-            <lc-col>12</lc-col>
-        </lc-row>
-        <lc-row gutter="20">
-            <lc-col>8</lc-col>
-            <lc-col>8</lc-col>
-            <lc-col>8</lc-col>
-        </lc-row>
-        <lc-row gutter="20">
-            <lc-col>6</lc-col>
-            <lc-col>6</lc-col>
-            <lc-col>6</lc-col>
-            <lc-col>6</lc-col>
-        </lc-row>
-        <lc-row gutter="20">
-            <lc-col span="2">2</lc-col>
-            <lc-col span="22">22</lc-col>
-        </lc-row>
-        <lc-row gutter="20">
-            <lc-col span="6">6</lc-col>
-            <lc-col offset="6" span="6">6</lc-col>
-        </lc-row> -->
+        <h2>前 / 后缀内嵌 icon</h2>
+        <lc-input placeholder="请输入" prefix="search"></lc-input>
+        <lc-input placeholder="请搜索" suffix="correct"></lc-input>
+        <lc-input placeholder="请搜索" prefix="user" suffix="add"></lc-input>
 
-        <h2>响应式</h2>
-        <!-- <lc-row>
-            <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
-            <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color:#FF9900; height: 20px;"></div></lc-col>
-            <lc-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div style="background-color: #67c23a; height: 20px;"></div></lc-col>
-            <lc-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div style="background-color: #FF9900; height: 20px;"></div></lc-col>
-        </lc-row> -->
+        <h2>3种大小</h2>
+        <lc-input placeholder="larger" size="larger"></lc-input>
+        <lc-input placeholder="default"></lc-input>
+        <lc-input placeholder="small" size="small"></lc-input>
 
-        <lc-row>
-                <lc-col :xs="{span: 8}" :sm="{span: 6}" :md="{span: 4}" :lg="{span: 3}" :xl="{span: 1}">
-                    <div style="background-color: #67c23a; height: 20px;">1</div>
-                </lc-col>
-                <lc-col :xs="{span: 4}" :sm="{span: 6}" :md="{span: 8}" :lg="{span: 9}" :xl="{span: 11}">
-                    <div style="background-color: #67c23a; height: 20px;">1</div>
-                </lc-col>
-                <lc-col :xs="{span: 4}" :sm="{span: 6}" :md="{span: 8}" :lg="{span: 9}" :xl="{span: 11}">
-                    <div style="background-color: #67c23a; height: 20px;">1</div>
-                </lc-col>
-                <lc-col :xs="{span: 8}" :sm="{span: 6}" :md="{span: 4}" :lg="{span: 3}" :xl="{span: 1}">
-                    <div style="background-color: #67c23a; height: 20px;">1</div>
-                </lc-col>
-            </lc-row>
+        <h2>可清空</h2>
+        <lc-input placeholder="请输入" clearable value="111"></lc-input>
 
         <lc-button @click="handleClick">click</lc-button>
     </div>

@@ -22,13 +22,13 @@
     <input
       class="lc-input__inner"
       :type="type"
-      :value="value"
+      :value="currentValue"
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
-      @change="$emit('change', $event.target.value)"
+      @change="handleChange"
       @focus="onFocus"
-      @input="$emit('input', $event.target.value)"
+      @input="handleInput"
       @mouseentry="onMouseEnter"
       @mouseleave="onMouseLeave"
     >
@@ -39,7 +39,7 @@
       @click="onClear"
       :class="{'clearable': showclear}"
     >
-      <lc-icon name="clear"></lc-icon>
+      <lc-icon name="clear">xxx</lc-icon>
     </i>
     <span class="lc-input-group__addon" v-if="$slots.append">
       <slot name="append"></slot>
@@ -96,24 +96,39 @@ export default {
         this.clearable &&
         !this.disabled &&
         !this.readonly &&
-        this.value &&
+        this.currentValue &&
         (this.focused || this.hovering)
       );
     }
   },
   data() {
     return {
+      currentValue: this.value,
       focused: false,
       hovering: false
     };
   },
   methods: {
+    handleChange (event) {
+      this.$emit('on-input-change', event);
+    },
+    handleInput (event) {
+      let value = event.target.value;
+      this.$emit('input', value);
+      this.setCurrentValue(value);
+      this.$emit('on-change', event);
+    },
+    setCurrentValue (value) {
+      if (value === this.currentValue) return
+      this.currentValue = value;
+    },
     onBlur(e) {
       this.focused = false;
       this.$emit("blur", e.target.value);
     },
     onClear() {
       this.$emit('input', '')
+      this.setCurrentValue('')
       this.$emit('change', '')
     },
     onFocus(e) {
@@ -141,10 +156,10 @@ export default {
 @lc-input-height-small: 28px;
 @lc-input-placeholder-color: #0000004d;
 @border-color: #e8e8e8;
-@border-color-disabled: #aaa;
+@border-color-disabled: #e7e7e7;
 @border-color-hover: #c0c4cc;
 @border-color-focus: #20b2aa;
-@bg-color-disabled: #eee;
+@bg-color-disabled: #f7f7f7;
 @border-radius: 4px;
 .placeholder(@rules) {
   &::-webkit-input-placeholder {
@@ -162,6 +177,7 @@ export default {
 }
 .lc-input {
   display: inline-block;
+  box-sizing: border-box;
   vertical-align: top;
   height: @lc-input-height;
 
@@ -199,7 +215,7 @@ export default {
 
     .placeholder({
       color: @lc-input-placeholder-color;
-      text-transform: uppercase;
+      // text-transform: uppercase;
     });
 
     &:hover {
@@ -226,6 +242,7 @@ export default {
     }
   }
   &__addon {
+    box-sizing: border-box;
     height: @lc-input-height;
     border: 1px solid @border-color;
     border-radius: @border-radius;

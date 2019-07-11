@@ -4,9 +4,17 @@
       <span :class="[prefixCls + '-group-prepend']" v-if="prepend">
         <slot name="prepend"></slot>
       </span>
-      <lc-icon name="clear" @click="onClear" :class="['lc-input-icon', prefixCls + '-clean-icon']" ></lc-icon>
-      <span :class="[prefixCls + '-prefix']">
-        <lc-icon :name="prefix" v-if="showPrefix" class="lc-input-icon"></lc-icon>
+      <lc-icon
+        name="clear"
+        :class="['lc-input-icon', prefixCls + '-clean-icon']"
+        v-if="clearable && currentValue && !append"
+        @click="onClear" ></lc-icon>
+      <lc-icon
+        :name="icon"
+        :class="['lc-input-icon', `${prefixCls}-${icon}-icon`]"
+        v-else-if="icon"></lc-icon>
+      <span :class="[prefixCls + '-suffix']" v-else-if="showSuffix">
+        <lc-icon :name="suffix" :class="[`lc-icon-${suffix}`]"></lc-icon>
       </span>
       <input
         :class="inputClasses"
@@ -24,8 +32,8 @@
       <span :class="[prefixCls + '-group-append']" v-if="append">
         <slot name="append"></slot>
       </span>
-      <span :class="[prefixCls + '-suffix']">
-        <lc-icon :name="suffix" v-if="showSuffix" class="lc-input-icon"></lc-icon>
+      <span :class="[prefixCls + '-prefix']" v-if="showPrefix">
+        <lc-icon :name="prefix" :class="[`lc-icon-${prefix}`]"></lc-icon>
       </span>
     </template>
     <textarea v-else></textarea>
@@ -54,8 +62,12 @@ export default {
     },
     type: {
       type: String,
-      default: "text"
+      default: "text",
+      validator(value) {
+        return ["text", "textarea", "password", "number", "date", "email", "url", "tel"].includes(value);
+      }
     },
+    icon: String,
     clearable: {
       type: Boolean,
       default: false
@@ -94,10 +106,12 @@ export default {
     },
     inputClasses() {
       return [
-        `${prefixCls}-wrapper`,
+        `${prefixCls}`,
         {
           [`${prefixCls}-${this.size}`]: !!this.size,
-          [`${prefixCls}-disabled`]: !!this.disabled
+          [`${prefixCls}-disabled`]: !!this.disabled,
+          [`${prefixCls}-with-prefix`]: this.showPrefix,
+          [`${prefixCls}-with-suffix`]: this.showSuffix,
         }
       ];
     },
@@ -113,7 +127,7 @@ export default {
   },
   data () {
     return {
-      // prefixCls: prefixCls,
+      prefixCls: prefixCls,
       currentValue: this.value,
       prepend: false,
       append: false,
@@ -126,7 +140,7 @@ export default {
   mounted() {
     if (this.type !== "textarea") {
       this.prepend = this.$slots.prepend !== undefined;
-      this.append = this.$slots.prepend !== undefined;
+      this.append = this.$slots.append !== undefined;
       this.showPrefix = !!this.prefix;
       this.showSuffix = !!this.suffix;
     }
@@ -203,6 +217,7 @@ export default {
   box-sizing: border-box;
   vertical-align: top;
   height: @lc-input-height;
+  position: relative;
 
   &.lc-input-wrapper-larger {
     height: @lc-input-height-larger;
@@ -212,22 +227,43 @@ export default {
     height: @lc-input-height-small;
   }
 
-  // &.is-disabled {
-  //   > .lc-input__inner {
-  //     border-color: @border-color-disabled;
-  //     background-color: @bg-color-disabled;
-  //     cursor: not-allowed;
-  //   }
-  // }
+  &.lc-input-hide-icon{
+    .lc-input-icon{
+      display: none;
+    }
+  }
 
-  // &.is-readonly {
-  //   > .lc-input__inner {
-  //     &:focus,
-  //     &:hover {
-  //       border-color: @border-color-disabled;
-  //     }
-  //   }
-  // }
+  > .lc-input-icon{
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+
+    &.lc-input-clean-icon {
+      display: none;
+    }
+  }
+
+  &:hover{
+    > .lc-input-clean-icon {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+
+  > .lc-input-prefix{
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+  }
+
+  > .lc-input-suffix{
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
   > .lc-input {
     height: 100%;
@@ -242,7 +278,7 @@ export default {
       )
       ;;
 
-    &:hover {
+    &:not(&-disabled) :hover {
       border-color: @border-color-hover;
     }
 
@@ -250,10 +286,18 @@ export default {
       border-color: @border-color-focus;
       outline: none;
     }
+
     &-disabled {
       border-color: @border-color-disabled;
       background-color: @bg-color-disabled;
       cursor: not-allowed;
+    }
+
+    &-with-prefix{
+      padding-left:  26px;
+    }
+    &-with-suffix{
+      padding-right:  26px;
     }
   }
 }
@@ -261,7 +305,7 @@ export default {
 .lc-input-group {
   display: inline-flex;
   align-items: center;
-  > .lc-input__inner {
+  > .lc-input {
     flex: 1;
     border-radius: 0;
 
@@ -270,7 +314,8 @@ export default {
       z-index: 2;
     }
   }
-  &__addon {
+
+  > .lc-input-group-prepend, .lc-input-group-append {
     box-sizing: border-box;
     height: @lc-input-height;
     border: 1px solid @border-color;
@@ -293,16 +338,16 @@ export default {
     }
   }
 
-  &-prepend {
-    > .lc-input-group__addon:first-child {
+  &-with-prepend {
+    > .lc-input-group-prepend:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
       margin-right: -1px;
     }
   }
 
-  &-append {
-    > .lc-input-group__addon:last-child {
+  &-with-append {
+    > .lc-input-group-append:last-child {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       margin-left: -1px;
@@ -310,34 +355,6 @@ export default {
   }
 }
 
-.lc-input-has-prefixCls {
-  position: relative;
-  .lc-input__inner {
-    padding-left: 26px;
-  }
-  .lc-input__prefix-icon {
-    position: absolute;
-    top: 50%;
-    left: 6px;
-    transform: translateY(-50%);
-  }
-}
-
-.lc-input-has-suffix {
-  position: relative;
-  .lc-input__inner {
-    padding-right: 26px;
-  }
-  .lc-input__suffix-icon {
-    position: absolute;
-    top: 50%;
-    right: 6px;
-    transform: translateY(-50%);
-    &.clearable {
-      cursor: pointer;
-    }
-  }
-}
 </style>
 
 

@@ -1,54 +1,42 @@
 <template>
-  <div
-    :class="[
-    'lc-input',
-    `lc-input-${type}`,
-    size ? `lc-input-${size}` : '',
-    {
-      'is-disabled': disabled,
-      'is-readonly': readonly,
-      'lc-input-group': $slots.prepend || $slots.append,
-      'lc-input-group-prepend': $slots.prepend,
-      'lc-input-group-append': $slots.append,
-      'lc-input-has-prefix': prefix,
-      'lc-input-has-suffix': suffix || clearable,
-    }
-    ]"
-  >
-    <span class="lc-input-group__addon" v-if="$slots.prepend">
-      <slot name="prepend"></slot>
-    </span>
-    <lc-icon :name="prefix" v-if="prefix" class="lc-input__prefix-icon"></lc-icon>
-    <input
-      class="lc-input__inner"
-      :type="type"
-      :value="currentValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
-      @change="handleChange"
-      @focus="onFocus"
-      @input="handleInput"
-      @mouseentry="onMouseEnter"
-      @mouseleave="onMouseLeave"
-    >
-    <lc-icon :name="suffix" v-if="suffix && !showclear" class="lc-input__suffix-icon"></lc-icon>
-    <i
-      v-if="showclear"
-      class="lc-input__suffix-icon"
-      @click="onClear"
-      :class="{'clearable': showclear}"
-    >
-      <lc-icon name="clear">xxx</lc-icon>
-    </i>
-    <span class="lc-input-group__addon" v-if="$slots.append">
-      <slot name="append"></slot>
-    </span>
+  <div :class="wrapperClasses">
+    <template v-if="this.type !== 'textarea'">
+      <span :class="[prefixCls + '-group-prepend']" v-if="prepend">
+        <slot name="prepend"></slot>
+      </span>
+      <lc-icon name="clear" @click="onClear" :class="['lc-input-icon', prefixCls + '-clean-icon']" ></lc-icon>
+      <span :class="[prefixCls + '-prefix']">
+        <lc-icon :name="prefix" v-if="showPrefix" class="lc-input-icon"></lc-icon>
+      </span>
+      <input
+        :class="inputClasses"
+        :type="type"
+        :value="currentValue"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readonly"
+        @change="handleChange"
+        @focus="onFocus"
+        @input="handleInput"
+        @mouseentry="onMouseEnter"
+        @mouseleave="onMouseLeave"
+      />
+      <span :class="[prefixCls + '-group-append']" v-if="append">
+        <slot name="append"></slot>
+      </span>
+      <span :class="[prefixCls + '-suffix']">
+        <lc-icon :name="suffix" v-if="showSuffix" class="lc-input-icon"></lc-icon>
+      </span>
+    </template>
+    <textarea v-else></textarea>
   </div>
 </template>
 
 <script>
 import Icon from "../icon";
+import { sign } from "crypto";
+const prefixCls = "lc-input";
+
 export default {
   name: "LcInput",
   props: {
@@ -91,6 +79,28 @@ export default {
     "lc-icon": Icon
   },
   computed: {
+    wrapperClasses() {
+      return [
+        `${prefixCls}-wrapper`,
+        {
+          [`${prefixCls}-wrapper-${this.size}`]: !!this.size,
+          [`${prefixCls}-group`]: this.prepend || this.append,
+          [`${prefixCls}-group-${this.size}`]: (this.prepend || this.append) && !!this.size,
+          [`${prefixCls}-group-with-prepend`]: this.prepend || this.append,
+          [`${prefixCls}-group-with-append`]: this.prepend || this.append,
+          [`${prefixCls}-hide-icon`]: this.prepend || this.append
+        }
+      ];
+    },
+    inputClasses() {
+      return [
+        `${prefixCls}-wrapper`,
+        {
+          [`${prefixCls}-${this.size}`]: !!this.size,
+          [`${prefixCls}-disabled`]: !!this.disabled
+        }
+      ];
+    },
     showclear() {
       return (
         this.clearable &&
@@ -101,25 +111,38 @@ export default {
       );
     }
   },
-  data() {
+  data () {
     return {
+      // prefixCls: prefixCls,
       currentValue: this.value,
+      prepend: false,
+      append: false,
+      showPrefix: false,
+      showSuffix: false,
       focused: false,
-      hovering: false
-    };
+      hovering: false,
+    }
+  },
+  mounted() {
+    if (this.type !== "textarea") {
+      this.prepend = this.$slots.prepend !== undefined;
+      this.append = this.$slots.prepend !== undefined;
+      this.showPrefix = !!this.prefix;
+      this.showSuffix = !!this.suffix;
+    }
   },
   methods: {
-    handleChange (event) {
-      this.$emit('on-input-change', event);
+    handleChange(event) {
+      this.$emit("on-input-change", event);
     },
-    handleInput (event) {
+    handleInput(event) {
       let value = event.target.value;
-      this.$emit('input', value);
+      this.$emit("input", value);
       this.setCurrentValue(value);
-      this.$emit('on-change', event);
+      this.$emit("on-change", event);
     },
-    setCurrentValue (value) {
-      if (value === this.currentValue) return
+    setCurrentValue(value) {
+      if (value === this.currentValue) return;
       this.currentValue = value;
     },
     onBlur(e) {
@@ -127,9 +150,9 @@ export default {
       this.$emit("blur", e.target.value);
     },
     onClear() {
-      this.$emit('input', '')
-      this.setCurrentValue('')
-      this.$emit('change', '')
+      this.$emit("input", "");
+      this.setCurrentValue("");
+      this.$emit("change", "");
     },
     onFocus(e) {
       this.focused = true;
@@ -163,60 +186,61 @@ export default {
 @border-radius: 4px;
 .placeholder(@rules) {
   &::-webkit-input-placeholder {
-      @rules();
+    @rules();
   }
   &:-moz-placeholder {
-      @rules();
+    @rules();
   }
   &::-moz-placeholder {
-      @rules();
+    @rules();
   }
   &:-ms-input-placeholder {
-      @rules();
+    @rules();
   }
 }
-.lc-input {
+.lc-input-wrapper {
   display: inline-block;
   box-sizing: border-box;
   vertical-align: top;
   height: @lc-input-height;
 
-  &.lc-input-larger {
+  &.lc-input-wrapper-larger {
     height: @lc-input-height-larger;
   }
 
-  &.lc-input-small {
+  &.lc-input-wrapper-small {
     height: @lc-input-height-small;
   }
 
-  &.is-disabled {
-    > .lc-input__inner {
-      border-color: @border-color-disabled;
-      background-color: @bg-color-disabled;
-      cursor: not-allowed;
-    }
-  }
+  // &.is-disabled {
+  //   > .lc-input__inner {
+  //     border-color: @border-color-disabled;
+  //     background-color: @bg-color-disabled;
+  //     cursor: not-allowed;
+  //   }
+  // }
 
-  &.is-readonly {
-    > .lc-input__inner {
-      &:focus,
-      &:hover {
-        border-color: @border-color-disabled;
-      }
-    }
-  }
+  // &.is-readonly {
+  //   > .lc-input__inner {
+  //     &:focus,
+  //     &:hover {
+  //       border-color: @border-color-disabled;
+  //     }
+  //   }
+  // }
 
-  &__inner {
+  > .lc-input {
     height: 100%;
     border: 1px solid @border-color;
     border-radius: @border-radius;
     padding: 0 8px;
     box-sizing: border-box;
-
-    .placeholder({
-      color: @lc-input-placeholder-color;
-      // text-transform: uppercase;
-    });
+    .placeholder(
+        {color: @lc-input-placeholder-color; 
+        // text-transform: uppercase;
+        }
+      )
+      ;;
 
     &:hover {
       border-color: @border-color-hover;
@@ -225,6 +249,11 @@ export default {
     &:focus {
       border-color: @border-color-focus;
       outline: none;
+    }
+    &-disabled {
+      border-color: @border-color-disabled;
+      background-color: @bg-color-disabled;
+      cursor: not-allowed;
     }
   }
 }
@@ -281,7 +310,7 @@ export default {
   }
 }
 
-.lc-input-has-prefix {
+.lc-input-has-prefixCls {
   position: relative;
   .lc-input__inner {
     padding-left: 26px;
@@ -290,7 +319,7 @@ export default {
     position: absolute;
     top: 50%;
     left: 6px;
-    margin-top: -8px;
+    transform: translateY(-50%);
   }
 }
 
@@ -303,7 +332,7 @@ export default {
     position: absolute;
     top: 50%;
     right: 6px;
-    margin-top: -8px;
+    transform: translateY(-50%);
     &.clearable {
       cursor: pointer;
     }

@@ -36,7 +36,26 @@
         <lc-icon :name="prefix" :class="[`lc-icon-${prefix}`]"></lc-icon>
       </span>
     </template>
-    <textarea v-else></textarea>
+    <textarea
+      v-else
+      :class="textareaClasses"
+      :value="currentValue"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+      :rows="rows"
+      :wrap="wrap"
+      :spellcheck="spellcheck"
+      :autocomplete="autocomplete"
+      :autofocus="autofocus"
+      :maxlength="maxlength"
+      @change="handleChange"
+      @focus="onFocus"
+      @input="handleInput"
+      @mouseentry="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    >
+    </textareav-else>
   </div>
 </template>
 
@@ -85,7 +104,34 @@ export default {
     },
     suffix: {
       type: String
-    }
+    },
+    rows: {
+      type: Number,
+      default: 2
+    },
+    wrap: {
+      type: String,
+      default: 'soft',
+      validator (value) {
+        return ['soft', 'hard'].includes(value)
+      }
+    },
+    autocomplete: {
+      type: String,
+      default: 'off',
+      validator (value) {
+        return ['off', 'on'].includes(value)
+      }
+    },
+    autofocus: {
+      type: Boolean,
+      default: false
+    },
+    maxlength: Number,
+    spellcheck: {
+      type: Boolean,
+      default: false
+    },
   },
   components: {
     "lc-icon": Icon
@@ -115,14 +161,13 @@ export default {
         }
       ];
     },
-    showclear() {
-      return (
-        this.clearable &&
-        !this.disabled &&
-        !this.readonly &&
-        this.currentValue &&
-        (this.focused || this.hovering)
-      );
+    textareaClasses () {
+      return [
+        'lc-textarea',
+        {
+          [`lc-textarea-disabled`]: !!this.disabled,
+        }
+      ]
     }
   },
   data () {
@@ -133,21 +178,19 @@ export default {
       append: false,
       showPrefix: false,
       showSuffix: false,
-      focused: false,
-      hovering: false,
     }
   },
-  mounted() {
+  created () {
     if (this.type !== "textarea") {
       this.prepend = this.$slots.prepend !== undefined;
       this.append = this.$slots.append !== undefined;
-      this.showPrefix = !!this.prefix;
-      this.showSuffix = !!this.suffix;
+      this.showPrefix = this.prefix !== undefined;
+      this.showSuffix = this.suffix !== undefined;
     }
   },
   methods: {
     handleChange(event) {
-      this.$emit("on-input-change", event);
+      this.$emit("change", event.target.value);
     },
     handleInput(event) {
       let value = event.target.value;
@@ -160,7 +203,6 @@ export default {
       this.currentValue = value;
     },
     onBlur(e) {
-      this.focused = false;
       this.$emit("blur", e.target.value);
     },
     onClear() {
@@ -169,18 +211,15 @@ export default {
       this.$emit("change", "");
     },
     onFocus(e) {
-      this.focused = true;
       this.$emit("focus", e.target.value);
     },
     /**
      * mouseover,mouseenter 的区别在于 mouseover 事件会冒泡
      */
     onMouseEnter() {
-      this.hovering = true;
       this.$emit("mouseenter");
     },
     onMouseLeave() {
-      this.hovering = false;
       this.$emit("mouseover");
     }
   }
@@ -216,16 +255,7 @@ export default {
   display: inline-block;
   box-sizing: border-box;
   vertical-align: top;
-  height: @lc-input-height;
   position: relative;
-
-  &.lc-input-wrapper-larger {
-    height: @lc-input-height-larger;
-  }
-
-  &.lc-input-wrapper-small {
-    height: @lc-input-height-small;
-  }
 
   &.lc-input-hide-icon{
     .lc-input-icon{
@@ -266,19 +296,26 @@ export default {
   }
 
   > .lc-input {
-    height: 100%;
+    height: @lc-input-height;
     border: 1px solid @border-color;
     border-radius: @border-radius;
     padding: 0 8px;
     box-sizing: border-box;
-    .placeholder(
-        {color: @lc-input-placeholder-color; 
-        // text-transform: uppercase;
-        }
-      )
-      ;;
+    &.lc-input-larger {
+      height: @lc-input-height-larger;
+    }
 
-    &:not(&-disabled) :hover {
+    &.lc-input-small {
+      height: @lc-input-height-small;
+    }
+
+    .placeholder(
+      {
+        color: @lc-input-placeholder-color; 
+      }
+    );
+
+    &:hover:not(.lc-input-disabled) {
       border-color: @border-color-hover;
     }
 
@@ -298,6 +335,34 @@ export default {
     }
     &-with-suffix{
       padding-right:  26px;
+    }
+
+  }
+
+  > .lc-textarea{
+    display: block;
+    box-sizing: border-box;
+    min-height: @lc-input-height;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    padding: 4px 8px;
+    color: #606266;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    .placeholder(
+      {
+        color: @lc-input-placeholder-color; 
+      }
+    );
+    &:focus {
+      border-color: @border-color-focus;
+      outline: none;
+    }
+    &-disabled {
+      border-color: @border-color-disabled;
+      background-color: @bg-color-disabled;
+      cursor: not-allowed;
     }
   }
 }

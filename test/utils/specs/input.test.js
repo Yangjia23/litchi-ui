@@ -31,6 +31,16 @@ describe('Input', () => {
             const inputElement = vm.$el.querySelector('input')
             expect(inputElement.getAttribute('type')).to.equal('password')
         })
+        it('设置 textarea".', () => {
+            vm = createTest(Input, { type: 'textarea' })
+            const textareaElement = vm.$el.querySelector('textarea')
+            expect(textareaElement.classList.contains('lc-textarea')).to.eq(true)
+        })
+        it('设置 rows".', () => {
+            vm = createTest(Input, { type: 'textarea', rows: 3 })
+            const textareaElement = vm.$el.querySelector('textarea')
+            expect(textareaElement.rows).to.equal(3)
+        })
         it('设置默认值".', () => {
             vm = createTest(Input, { value: '111', disabled: true, readonly: true })
             const inputElement = vm.$el.querySelector('input')
@@ -47,15 +57,16 @@ describe('Input', () => {
             expect(inputElement.readOnly).to.equal(true)
         })
         it('设置 clearable".', () => {
-            vm = createTest(Input, { clearable: true, value: 'abc' })
-            expect(vm.$el.className).to.include('lc-input-has-suffix')
+            vm = createTest(Input, { clearable: true, value: 'abc' }, true)
+            const svg = vm.$el.querySelector('svg')
+            expect(svg.classList.contains('lc-input-clean-icon')).to.eq(true)
         })
         it('设置前/后缀内嵌 icon', () => {
-            const vm = createTest(Input, { prefix: 'search', suffix: 'add' })
-            const prefixIcon = vm.$el.querySelector('.lc-input__prefix-icon use')
-            const suffixIcon = vm.$el.querySelector('.lc-input__suffix-icon use')
-            expect(prefixIcon.getAttribute('xlink:href')).to.equal('#i-search')
-            expect(suffixIcon.getAttribute('xlink:href')).to.equal('#i-add')
+            vm = createTest(Input, { prefix: 'search', suffix: 'add' }, true)
+            const prefixIcon = vm.$el.querySelector('.lc-input-prefix svg')
+            const suffixIcon = vm.$el.querySelector('.lc-input-suffix svg')
+            expect(prefixIcon.classList.contains('lc-icon-search')).to.eq(true)
+            expect(suffixIcon.classList.contains('lc-icon-add')).to.eq(true)
         })
     })
 
@@ -68,18 +79,17 @@ describe('Input', () => {
         afterEach(() => {
             destoryVM(vm)
         })
-        it('change/input/focus/blur event', () => {
+        it('change/input/focus event', () => {
             ['change', 'input', 'focus'].forEach(eventName => {
                 vm = createTest(Input, {}, true)
                 const callback = sinon.fake()
                 vm.$on(eventName, callback)
                 let event = new Event(eventName)
-                Object.defineProperty(event,'target', {value: {value: 'test', enumerable: false}})
+                Object.defineProperty(event, 'target', {value: {value: 'test', enumerable: false}})
                 const inputElement = vm.$el.querySelector('input')
                 inputElement.dispatchEvent(event)
                 expect(callback).to.have.been.calledWith('test');
             })
         })
-
     })
 })

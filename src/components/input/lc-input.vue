@@ -61,7 +61,6 @@
 
 <script>
 import Icon from "../icon";
-import { sign } from "crypto";
 const prefixCls = "lc-input";
 
 export default {

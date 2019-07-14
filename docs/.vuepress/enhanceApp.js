@@ -1,5 +1,5 @@
-import msd from '../../src/main';
+import ComponentLibary from './../../src/main';
 
-export default ({ Vue }) => {
-  Vue.use(msd);
-};
+export default ({Vue,options,router,siteData}) => {
+  Vue.use(ComponentLibary)
+}

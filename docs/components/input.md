@@ -41,16 +41,10 @@ title: Input 输入框
       </example>
       <h4>复合型输入框</h4>
       <example>
-        <lc-input placeholder="Enter email">
-            <lc-icon name="email" slot="prepend"></lc-icon>
-        </lc-input>
         <lc-input placeholder="Enter something...">
             <template slot="append">
                 <lc-button>Search</lc-button>
             </template>
-        </lc-input>
-        <lc-input placeholder="Enter something...">
-            <lc-button icon="search" slot="append"></lc-button>
         </lc-input>
         <lc-input placeholder="Enter something...">
             <template slot="prepend">www</template>
@@ -88,15 +82,9 @@ export default {
         <lc-input placeholder="Enter something..." suffix="correct"></lc-input>
         <lc-input placeholder="Enter something..." prefix="user" suffix="add"></lc-input>`,
       code6: `<lc-input placeholder="Enter something...">
-            <lc-icon name="email" slot="prepend"></lc-icon>
-        </lc-input>
-        <lc-input placeholder="Enter something...">
             <template slot="append">
                 <lc-button>Search</lc-button>
             </template>
-        </lc-input>
-        <lc-input placeholder="Enter something...">
-            <lc-button icon="search" slot="append"></lc-button>
         </lc-input>
         <lc-input placeholder="Enter something...">
             <template slot="prepend">www</template>

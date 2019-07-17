@@ -48,21 +48,27 @@
             box-sizing: border-box;
         }
 
-        #app{
-            padding: 20px;
+        #app {
+            padding: 50px;
+            border: 1px solid red;
         }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <h2>普通使用</h2>
-        <lc-button>电脑</lc-button>
-
+        <lc-popover>
+            <div slot="content">我是内容</div>
+            <span>点击</span>
+        </lc-popover>
+        <lc-popover>
+            <div slot="content">我是内容</div>
+            <span>点击</span>
+        </lc-popover>
     </div>
 
     <script src="./src/app.js"></script>
-    
+
     <script src="//at.alicdn.com/t/font_1224112_pfnwen15ydr.js"></script>
 </body>
 

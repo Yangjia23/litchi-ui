@@ -118,13 +118,22 @@ export default {
 
 ### API
 
-#### Button Attribute
+#### Input Attribute
 | 属性     | 说明     | 类型    | 可选值                                      | 默认值    |
 | :------- | :------- | :------ | :------------------------------------------ | :-------- |
-| type     | 按钮类型 | String  | default / primary / success / danger / warning | `default` |
-| icon  | 图标类名 | String |                                      | `-` |
-| icon-position  | 图标位置 | String |  left / right | `-` |
-| loading  | 是否加载中状态 | Boolean |    | `false` |
-| round    | 是否圆形按钮   | Boolean |    | `false` |
-| disabled | 是否禁用       | Boolean |    | `false` |
-| size     | 按钮大小       | String  |  larger / default / small     | `default` |
+| type     | 输入框类型 | String  | text / textarea / password | `text` |
+| value     | 绑定值 | String/Number  |  | - |
+| placeholder | 输入框占位文本 | String  |  | - |
+| clearable  | 是否可清空 | Boolean |                                      | `false` |
+| disabled  | 是否禁用 | Boolean |   | `false` |
+| size  | 输入框尺寸，只在 `type!="textarea"` 时有效 | String | larger/default/small    | `default` |
+| prefix | 输入框头部图标   | String |    | - |
+| suffix | 输入框尾部图标     | String |    | - |
+| rows     | 输入框行数，只对 `type="textarea"` 有效  | Number  |       | 2 |
+
+
+#### Input Slots
+| 名称     | 说明     |
+| :------- | :------- |
+| prepend  | 输入框前置内容，仅在 `type="text"` 类型下有效 |
+| append   | 输入框后置内容，仅在 `type="text"` 类型下有效 |

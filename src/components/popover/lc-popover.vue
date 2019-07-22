@@ -1,5 +1,5 @@
 <template>
-  <div :class="popoverCls" @click="handleClick">
+  <div :class="popoverCls" ref="popoverWrap">
     <div :class="popoverContentCls" v-if="visible" ref="popover">
       <div :class="prefixCls + '-title'" v-if="title">{{title}}</div>
       <div :class="prefixCls + '-content'" v-if="content">{{content}}</div>
@@ -31,6 +31,13 @@ export default {
       validator(value) {
         return ["top", "bottom", "left", "right"].includes(value);
       }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator (value) {
+        return ['click', 'hover'].includes(value);
+      }
     }
   },
   data() {
@@ -45,6 +52,14 @@ export default {
     },
     popoverContentCls() {
       return [`${this.prefixCls}`, `${this.prefixCls}-${this.position}`];
+    }
+  },
+  mounted () {
+    if (this.trigger === 'click') {
+      this.$refs.popoverWrap.addEventListener('click', this.handleClick)
+    } else {
+      this.$refs.popoverWrap.addEventListener('mouseenter', this.handleOpen)
+      this.$refs.popoverWrap.addEventListener('mouseleave', this.handleClose)
     }
   },
   methods: {
@@ -144,6 +159,7 @@ $popover-border-color: #333;
     &::before,
     &::after {
       left: 20px;
+      border-bottom: none;
     }
     &::before {
       top: 100%;
@@ -159,6 +175,7 @@ $popover-border-color: #333;
     &::before,
     &::after {
       left: 20px;
+      border-top: none;
     }
     &::before {
       bottom: 100%;
@@ -176,6 +193,7 @@ $popover-border-color: #333;
     &::after {
       top: 50%;
       transform: translateY(-50%);
+      border-right: none;
     }
     &::before {
       left: 100%;
@@ -192,6 +210,7 @@ $popover-border-color: #333;
     &::after {
       top: 50%;
       transform: translateY(-50%);
+      border-left: none;
     }
     &::before {
       right: 100%;

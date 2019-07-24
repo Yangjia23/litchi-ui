@@ -1,16 +1,17 @@
 <template>
   <div :class="radioCls">
     <template v-if="isGroup">
-      <label v-for="(option,idx) in datas" :key="idx" @click="setValue(option)">
+      <label v-for="(option,idx) in datas" :key="idx" @click="setValue(option)"
+        :class="[`${prefixCls}-item`, {[`${prefixCls}-item-disabled`]: option['disabled']}]">
         <span
           :class="[`${prefixCls}-icon`, {[`${prefixCls}-icon-checked`]: selectValue === option[valueKey]}]"
         ></span>
-        <span>{{option[labelKey]}}</span>
+        <span :class="`${prefixCls}-label`">{{option[labelKey]}}</span>
       </label>
     </template>
     <label v-else @click="setValue(value)">
       <span :class="radioIconCls"></span>
-      <span>
+      <span :class="`${prefixCls}-label`">
         <slot></slot>
       </span>
     </label>
@@ -18,8 +19,6 @@
 </template>
 
 <script>
-import { type } from "os";
-import { Stream } from "stream";
 const prefixCls = "lc-radio";
 export default {
   name: "LcRadio",
@@ -76,6 +75,7 @@ export default {
   methods: {
     setValue(data) {
       if (this.disabled) return false;
+      if (typeof data === "object" && data.disabled) return false;
       let value = typeof data === "string" ? data : data[this.valueKey];
       this.$emit("input", value);
       this.$emit("change", value);
@@ -88,12 +88,15 @@ export default {
 @active-color: #20b2aa;
 .lc-radio {
   display: inline-block;
+  box-sizing: border-box;
   label {
+    display: inline-block;
     height: 30px;
     line-height: 30px;
   }
   &-icon {
     display: inline-block;
+    box-sizing: border-box;
     vertical-align: -3px;
     width: 16px;
     height: 16px;
@@ -116,18 +119,63 @@ export default {
     &-checked {
       border-color: @active-color;
       &::after {
-        transform: scale(1);
+        transform: scale(0.8);
       }
     }
   }
 
+  &-label{
+    color: #606266;
+    font-size: 14px;
+    padding-left: 4px;
+  }
+
   &-group {
-    label {
-      margin-right: 10px;
-      &:last-child{
-        margin-right: 0
+    .lc-radio-item {
+      // margin-right: 10px;
+      & + .lc-radio-item{
+        margin-left: 20px;
+      }
+      &-disabled{
+        cursor: not-allowed;
+        .lc-radio-icon{
+          background-color: #f5f7fa;
+          border-color: #e4e7ed;
+          &-checked {
+            &::after {
+              background-color: #c0c4cc;
+              transform: scale(0.8);
+            }
+          }
+        }
+        .lc-radio-label{
+          color: #c0c4cc;
+        }
       }
     }
+  }
+
+  &-disabled{
+    label{
+      cursor: not-allowed;
+      .lc-radio-icon{
+        background-color: #f5f7fa;
+        border-color: #e4e7ed;
+        &-checked {
+          &::after {
+            background-color: #c0c4cc;
+            transform: scale(0.8);
+          }
+        }
+      }
+      .lc-radio-label{
+        color: #c0c4cc;
+      }
+    }
+  }
+
+  & + &{
+    margin-left: 20px;
   }
 }
 </style>

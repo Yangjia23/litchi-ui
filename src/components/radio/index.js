@@ -1,2 +1,2 @@
-import Radio from './lc-radio'
-export default Radio
+import Radio from './lc-radio';
+export default Radio;

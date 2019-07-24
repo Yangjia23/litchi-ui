@@ -9,12 +9,28 @@ new Vue({
     el: '#app',
     data() {
         return {
+            radio: null,
             message: '',
-            activeTab: 'woman'
+            activeTab: 'woman',
+            sourceList: [
+                {
+                    label: '111',
+                    value: 1,
+                },
+                {
+                    label: '222',
+                    value: 2,
+                    disabled: true
+                },
+                {
+                    label: '333',
+                    value: 3
+                }
+            ]
         }
     },
     methods: {
-        handleClick () {
+        handleClick() {
             this.$toast({
                 type: 'success',
                 message: '丑八怪',

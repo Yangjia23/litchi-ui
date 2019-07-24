@@ -47,32 +47,21 @@
             height: 20px;
             box-sizing: border-box;
         }
-
-        #app {
-            padding: 150px;
-            border: 1px solid red;
-        }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <lc-popover>
-            <div slot="content">我是内容</div>
-            <lc-button>点击</lc-button>
-        </lc-popover>
-        <lc-popover position="bottom">
-            <div slot="content">我是内容我是内容我是内容我是内容我我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容是内容我是内容我是内容我是内容我是内容</div>
-            <lc-button>点击</lc-button>
-        </lc-popover>
-        <lc-popover position="left">
-            <div slot="content">dsfasdof</div>
-            <lc-button>点击</lc-button>
-        </lc-popover>
-        <lc-popover position="right">
-            <div slot="content">我是内容是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我我是内容我是内容我是内容我是内容我我是内容我是内容我是内容</div>
-            <lc-button>点击</lc-button>
-        </lc-popover>
+        <h3>普通使用</h3>
+        <lc-radio value="111" v-model="radio">选项1</lc-radio>
+        <lc-radio value="222" v-model="radio">选项2</lc-radio>
+        <lc-radio value="222" v-model="radio" disabled>选项3</lc-radio>
+        <h3>组合使用</h3>
+        <lc-radio v-model="radio" :datas="sourceList"></lc-radio>
+        <lc-radio v-model="radio" :datas="sourceList" disabled></lc-radio>
+        <h3>单个禁用</h3>
+        <lc-radio v-model="radio" :datas="sourceList"></lc-radio>
+
     </div>
 
     <script src="./src/app.js"></script>

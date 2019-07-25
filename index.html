@@ -47,20 +47,25 @@
             height: 20px;
             box-sizing: border-box;
         }
+
+        #app{
+            padding: 40px;
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
         <h3>普通使用</h3>
-        <lc-radio value="111" v-model="radio">选项1</lc-radio>
-        <lc-radio value="222" v-model="radio">选项2</lc-radio>
-        <lc-radio value="222" v-model="radio" disabled>选项3</lc-radio>
+        <lc-checkbox v-model="checked1">选项1</lc-checkbox>
+        <lc-checkbox v-model="checked2">选项2</lc-checkbox>
+        <!-- <lc-checkbox value="222" v-model="radio">选项2</lc-checkbox> -->
+        <!-- <lc-checkbox value="222" v-model="radio" disabled>选项3</lc-checkbox> -->
         <h3>组合使用</h3>
-        <lc-radio v-model="radio" :datas="sourceList"></lc-radio>
-        <lc-radio v-model="radio" :datas="sourceList" disabled></lc-radio>
+        <lc-checkbox v-model="checkList" :datas="sourceList"></lc-checkbox>
+        <lc-checkbox v-model="checkList" :datas="sourceList" disabled></lc-checkbox>
         <h3>单个禁用</h3>
-        <lc-radio v-model="radio" :datas="sourceList"></lc-radio>
+        <!-- <lc-checkbox v-model="radio" :datas="sourceList"></lc-checkbox> -->
 
     </div>
 

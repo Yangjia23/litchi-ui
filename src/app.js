@@ -9,9 +9,9 @@ new Vue({
     el: '#app',
     data() {
         return {
-            radio: null,
-            message: '',
-            activeTab: 'woman',
+            checked1: false,
+            checked2: true,
+            checkList: [],
             sourceList: [
                 {
                     label: '111',
@@ -20,7 +20,7 @@ new Vue({
                 {
                     label: '222',
                     value: 2,
-                    disabled: true
+                    disabled: true,
                 },
                 {
                     label: '333',

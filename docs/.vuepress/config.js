@@ -56,7 +56,8 @@ module.exports = {
                             collapsable: false,
                             children: [
                                 'input',
-                                'radio'
+                                'radio',
+                                'checkbox',
                             ]
                         },
                         {

@@ -3,10 +3,9 @@
     <template v-if="isGroup">
       <label v-for="(option,idx) in datas" :key="idx" @click="setValue(option)"
         :class="[`${prefixCls}-item`, {[`${prefixCls}-item-disabled`]: option['disabled']}]">
-        <span
-          :class="[`${prefixCls}-icon`, {[`${prefixCls}-icon-checked`]: selectValue === option[valueKey]}]"
-        ></span>
-        <span :class="`${prefixCls}-label`">{{option[labelKey]}}</span>
+        <span :class="[`${prefixCls}-icon`, {[`${prefixCls}-icon-checked`]: selectValue === option[valueKey]}]"></span>
+        <slot v-if="$scopedSlots.item" name="item" :option="option"></slot>
+        <span v-else :class="`${prefixCls}-label`">{{option[labelKey]}}</span>
       </label>
     </template>
     <label v-else @click="setValue(value)">

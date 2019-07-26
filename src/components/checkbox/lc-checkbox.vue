@@ -1,21 +1,19 @@
 <template>
   <div :class="checkBoxCls">
     <template v-if="isGroup">
-      <label
-        v-for="option in datas"
+      <label v-for="option in datas"
         :key="option[valueKey]"
         :class="[`${prefixCls}-item`, {[`${prefixCls}-item-disabled`]: option['disabled']}]"
         @click="setChecked(option)"
       >
-        <span
-          :class="[
+        <span :class="[
           `${prefixCls}-icon`,
           {
             [`${prefixCls}-icon-checked`]: value.includes(option[valueKey])
           }
-        ]"
-        ></span>
-        <span :class="`${prefixCls}-label`">{{option[labelKey]}}</span>
+        ]"></span>
+        <slot v-if="$scopedSlots.item" name="item" :option="option"></slot>
+        <span v-else :class="`${prefixCls}-label`">{{option[labelKey]}}</span>
       </label>
     </template>
     <label v-else @click="setChecked">
@@ -41,13 +39,13 @@ export default {
     },
     valueKey: {
       type: String,
-      default: "value"
+      default: 'value',
     },
     labelKey: {
       type: String,
-      default: "label"
+      default: 'label',
     },
-    value: [Boolean, Array]
+    value: [Boolean, Array],
   },
   data() {
     return {

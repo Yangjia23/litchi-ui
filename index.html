@@ -57,15 +57,11 @@
 <body>
     <div id="app">
         <h3>普通使用</h3>
-        <lc-checkbox v-model="checked1">选项1</lc-checkbox>
-        <lc-checkbox v-model="checked2">选项2</lc-checkbox>
-        <!-- <lc-checkbox value="222" v-model="radio">选项2</lc-checkbox> -->
-        <!-- <lc-checkbox value="222" v-model="radio" disabled>选项3</lc-checkbox> -->
-        <h3>组合使用</h3>
-        <lc-checkbox v-model="checkList" :datas="sourceList"></lc-checkbox>
-        <lc-checkbox v-model="checkList" :datas="sourceList" disabled></lc-checkbox>
-        <h3>单个禁用</h3>
-        <!-- <lc-checkbox v-model="radio" :datas="sourceList"></lc-checkbox> -->
+        <lc-collapse>
+            <lc-collapse-item title="标题一">内容一</lc-collapse-item>
+            <lc-collapse-item title="标题二">内容二</lc-collapse-item>
+            <lc-collapse-item title="标题三">内容三</lc-collapse-item>
+        </lc-collapse>
 
     </div>
 

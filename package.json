@@ -10,7 +10,8 @@
     "dev-test": "parcel watch test/utils/specs/* --no-cache & karma start",
     "test": "parcel build test/utils/specs/* --no-cache --no-minify && karma start --single-run",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "deploy": "bash ./deploy.sh"
   },
   "dependencies": {
     "vue": "^2.6.10",

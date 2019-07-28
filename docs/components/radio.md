@@ -175,7 +175,7 @@ export default {
           }
         <\/script>`,
       code6: `<template>
-          <lc-radio v-model="checkList" :datas="source">
+          <lc-radio v-model="radio" :datas="source">
             <template v-slot:item="{option}">
               <span>{{option.city}}-{{option.name}}-{{option.job}}</span>
             </template>
@@ -186,7 +186,7 @@ export default {
           export default {
             data () {
               return {
-                checkList: [],
+                radio: null,
                 source: [
                   {city: '北京', value: 1, name: '张三', job: 'Node'}, 
                   {city: '上海', value: 2, name: '李斯', job: 'Java'},

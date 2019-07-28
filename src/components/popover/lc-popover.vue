@@ -116,8 +116,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-$popover-border-color: #333;
+<style lang="less" scoped>
+@popover-border-color: #333;
 
 .lc-popover-wrapper {
   display: inline-block;
@@ -127,7 +127,7 @@ $popover-border-color: #333;
   position: absolute;
   min-width: 150px;
   border-radius: 4px;
-  border: 1px solid $popover-border-color;
+  border: 1px solid @popover-border-color;
   line-height: 1.4;
   text-align: justify;
   font-size: 14px;
@@ -163,7 +163,7 @@ $popover-border-color: #333;
     }
     &::before {
       top: 100%;
-      border-top-color: $popover-border-color;
+      border-top-color: @popover-border-color;
     }
     &::after {
       top: calc(100% - 1px);
@@ -179,7 +179,7 @@ $popover-border-color: #333;
     }
     &::before {
       bottom: 100%;
-      border-bottom-color: $popover-border-color;
+      border-bottom-color: @popover-border-color;
     }
     &::after {
       bottom: calc(100% - 1px);
@@ -197,7 +197,7 @@ $popover-border-color: #333;
     }
     &::before {
       left: 100%;
-      border-left-color: $popover-border-color;
+      border-left-color: @popover-border-color;
     }
     &::after {
       left: calc(100% - 1px);
@@ -214,7 +214,7 @@ $popover-border-color: #333;
     }
     &::before {
       right: 100%;
-      border-right-color: $popover-border-color;
+      border-right-color: @popover-border-color;
     }
     &::after {
       right: calc(100% - 1px);

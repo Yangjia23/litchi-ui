@@ -3,15 +3,13 @@
     <div class="example-demo">
       <slot></slot>
     </div>
-    <transition name="fade">
-      <div class="example-code" v-show="codeVisible">
-        <div class="example-tools">
-          <span title="在XX打开">open</span>
-          <span title="复制">copy</span>
-        </div>
-        <pre v-highlightjs><code class="html"><slot name="code"></slot></code></pre>
+    <div :class="{'example-code': true, 'expand': codeVisible}">
+      <div class="example-tools">
+        <span title="在XX打开">open</span>
+        <span title="复制">copy</span>
       </div>
-    </transition>
+      <pre v-highlightjs><code class="html"><slot name="code"></slot></code></pre>
+    </div>
     <div class="example-more-code" @click="toggle">{{codeVisible ? 'Hide Code': 'Show Code'}}</div>
   </div>
 </template>
@@ -64,13 +62,17 @@ export default {
   }
   .example-demo {
     padding: 16px;
+    border-bottom: 1px dashed #eaecef;
   }
   .example-code {
-    border-top: 1px dashed #eaecef;
     padding: 0 16px;
     position: relative;
-    // transition: height .2s ease-in-out;
-    // transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    transition: all .8s ease-in-out;
+    max-height: 0;
+    &.expand{
+      max-height: 1000px;
+    }
     .example-tools {
       position: absolute;
       top: 13px;
@@ -83,7 +85,6 @@ export default {
     height: 36px;
     line-height: 36px;
     text-align: center;
-    border-top: 1px solid #eaecef;
     font-size: 12px;
     color: #909399;
     cursor: pointer;

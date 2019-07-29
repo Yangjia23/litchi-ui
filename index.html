@@ -57,10 +57,17 @@
 <body>
     <div id="app">
         <h3>普通使用</h3>
-        <lc-collapse>
+        <lc-collapse v-model="expand1">
             <lc-collapse-item title="标题一">内容一</lc-collapse-item>
             <lc-collapse-item title="标题二">内容二</lc-collapse-item>
             <lc-collapse-item title="标题三">内容三</lc-collapse-item>
+        </lc-collapse>
+
+        <h3>手风琴</h3>
+        <lc-collapse v-model="expand2" accordion>
+            <lc-collapse-item title="标题一" name="pane1">内容一</lc-collapse-item>
+            <lc-collapse-item title="标题二" name="pane2">内容二</lc-collapse-item>
+            <lc-collapse-item title="标题三" name="pane3">内容三</lc-collapse-item>
         </lc-collapse>
 
     </div>

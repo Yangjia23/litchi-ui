@@ -9,7 +9,8 @@ new Vue({
     el: '#app',
     data() {
         return {
-            
+            expand1: [0, 2],
+            expand2: 'pane2'
         }
     },
     methods: {

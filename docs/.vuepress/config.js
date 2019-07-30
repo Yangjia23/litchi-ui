@@ -65,7 +65,8 @@ module.exports = {
                             collapsable: false,
                             children: [
                                 'alert',
-                                'toast'
+                                'toast',
+                                'collapse'
                             ]
                         },
                         {

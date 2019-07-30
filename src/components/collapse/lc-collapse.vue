@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     setActive() {
-      console.log(this.$children);
       this.$children.forEach(($item, index) => {
         const name = $item.name || index;
         $item.isExpand = this.activedKeys.includes(name);

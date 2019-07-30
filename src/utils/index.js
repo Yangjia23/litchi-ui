@@ -1,4 +1,5 @@
 const addClass = (el, value) => {
+    console.log(111)
     if (!el) return
     const curCls = el.className
     const classes = (value || '').split(' ')

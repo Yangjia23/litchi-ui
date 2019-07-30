@@ -4,26 +4,30 @@
             <i :class="`${prefixCls}__icon`">
                 <lc-icon name="right"></lc-icon>
             </i>
-            <template v-if="$slots.title" slot="title"></template>
+            <template v-if="$slots.title">
+                <slot name="title"></slot>
+            </template>
             <template v-else>{{title}}</template>
         </div>
-        <CollapseTransition>
-            <div :class="`${prefixCls}__content`" v-if="isExpand">
-                <slot></slot>
+        <lc-collapse-transition>
+            <div :class="`${prefixCls}__content`" v-show="isExpand">
+                <div :class="`${prefixCls}__content-box`">
+                     <slot></slot>
+                </div>
             </div>
-        </CollapseTransition>
+        </lc-collapse-transition>
     </div>
 </template>
 
 <script>
-import CollapseTransition from './collapse-transition'
+import LcCollapseTransition from './collapse-transition'
 import Icon from '../icon/'
 
 const prefixCls = "lc-collapse-item";
 export default {
     name: 'LcCollapseItem',
     components: {
-        CollapseTransition,
+        LcCollapseTransition,
         'lc-icon': Icon
     },
     inject: ['collapse'],
@@ -92,7 +96,7 @@ export default {
             transition: transform .3s;
         }
     }
-    &__content{
+    &__content-box{
         border-top: 1px solid #d9d9d9;
         padding: 16px;
         background-color: #fff;
@@ -106,6 +110,10 @@ export default {
             }
         }
     }
+}
+
+.lc-collapse-transition {
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
 }
 </style>
 

@@ -2,6 +2,7 @@ export {default as Button} from './button';
 export {default as ButtonGroup} from './button-group';
 export {default as Icon} from './icon';
 export {default as Input} from './input';
+export {default as InputNumber} from './inputNumber';
 export {default as Radio} from './radio';
 export {default as Checkbox} from './checkbox';
 export {Row, Col} from './grid';

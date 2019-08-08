@@ -15,7 +15,14 @@
       </span>
     </div>
     <div :class="`${prefixCls}-input-warp`">
-      <input :class="`${prefixCls}-input`" :value="currentValue" :min="min" :max="max" step="step" />
+      <input
+        :class="`${prefixCls}-input`"
+        :value="currentValue"
+        :min="min"
+        :max="max"
+        step="step"
+        @blur="handleBlur"
+      />
     </div>
   </div>
 </template>
@@ -23,6 +30,7 @@
 <script>
 const prefixCls = "lc-input-number";
 import LcIcon from "../icon";
+import { type } from "os";
 
 export default {
   name: "LcInputNumber",
@@ -48,6 +56,9 @@ export default {
       type: [Number, String],
       default: 1
     },
+    precision: {
+      type: Number
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -71,6 +82,12 @@ export default {
           [`${this.prefixCls}-disabled`]: this.disabled
         }
       ];
+    },
+    InputHandlerAdd() {
+      return [`${prefixCls}-handler-item`, `${prefixCls}-handler-up`, {}];
+    },
+    InputHandlerDown() {
+      return [`${prefixCls}-handler-item`, `${prefixCls}-handler-down`];
     }
   },
   watch: {
@@ -80,9 +97,33 @@ export default {
   },
   methods: {
     handleModify(type) {
-      let newValue = this.currentValue + (type ? this.step : -this.step);
+      const { min, max, step, currentValue } = this;
+      let newValue = currentValue + (type ? step : -step);
+      if (newValue > max) newValue = max;
+      if (newValue < min) newValue = min;
       this.$emit("input", newValue);
       this.$emit("change", newValue);
+    },
+    handleBlur(e) {
+      let value = e.target.value;
+      if (typeof e.target.value !== "number") {
+      }
+    },
+    getValue(value) {
+      let v = parseFloat(value);
+      return isNaN(v) ? null : v;
+    },
+    setValue(value, type) {
+      if (this.disabled) return false;
+      if (this.min) {
+        value = Math.max(value, this.min);
+      }
+      if (this.max) {
+        value = Math.min(value, this.max);
+      }
+      if (this.precision) {
+          
+      }
     }
   }
 };

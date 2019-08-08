@@ -48,7 +48,7 @@
             box-sizing: border-box;
         }
 
-        #app{
+        #app {
             padding: 40px;
         }
     </style>
@@ -57,24 +57,12 @@
 <body>
     <div id="app">
         <h3>普通使用</h3>
-        <lc-collapse v-model="expand1">
-            <lc-collapse-item title="标题一">内容一</lc-collapse-item>
-            <lc-collapse-item title="标题二">内容二</lc-collapse-item>
-            <lc-collapse-item title="标题三">内容三</lc-collapse-item>
-        </lc-collapse>
-
-        <h3>手风琴</h3>
-        <lc-collapse v-model="expand2" accordion>
-            <lc-collapse-item title="标题一" name="pane1">内容一</lc-collapse-item>
-            <lc-collapse-item title="标题二" name="pane2">内容二</lc-collapse-item>
-            <lc-collapse-item title="标题三" name="pane3">内容三</lc-collapse-item>
-        </lc-collapse>
-
+        <lc-cascader :options="source" :field-names="fieldNames"></lc-cascader>
     </div>
 
     <script src="./src/app.js"></script>
 
-    <script src="//at.alicdn.com/t/font_1224112_pfnwen15ydr.js"></script>
+    <script src="//at.alicdn.com/t/font_1224112_lwbaqcaurda.js"></script>
 </body>
 
 </html>

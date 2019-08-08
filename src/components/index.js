@@ -12,3 +12,4 @@ export {default as Toast} from './toast';
 export {default as Popover} from './popover';
 export {default as Collapse} from './collapse';
 export {default as CollapseItem} from './collapse-item';
+export {default as Cascader} from './cascader';

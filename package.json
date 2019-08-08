@@ -14,7 +14,8 @@
     "deploy": "bash ./deploy.sh"
   },
   "dependencies": {
-    "vue": "^2.6.10",
+    "element-ui": "^2.11.1",
+    "vue": "^2.5.17",
     "vue-hot-reload-api": "^2.3.3"
   },
   "devDependencies": {

@@ -1,20 +1,13 @@
-import * as components from './components'
+import Vue from "vue";
+import App from "./App.vue";
+import Litchi from './litchi';
+// import VueHighlightJS from 'vue-highlightjs';
 
-const ComponentLibary = {
-    install(Vue, opts = {}) {
-        for(const componentName in components) {
-            if (componentName.toUpperCase() === 'TOAST') {
-                Vue.prototype.$toast = components[componentName]
-            } else {
-                const component = components[componentName]
-                Vue.component(component.name, component)
-            }
-        }
-    }
-}
+Vue.use(Litchi);
+// Vue.use(VueHighlightJS);
 
-export default ComponentLibary
+Vue.config.productionTip = false;
 
-if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(ComponentLibary)
-}
+new Vue({
+  render: h => h(App)
+}).$mount("#app");

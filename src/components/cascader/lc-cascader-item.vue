@@ -13,7 +13,14 @@
         <lc-icon :class="`${prefixCls}-item__icon`" v-if="item[fieldNames['children']] && item[fieldNames['children']].length" name="right"></lc-icon>
       </li>
     </ul>
-    <lc-cascader-item :source="filterSource" v-if="filterSource" :field-names="fieldNames"></lc-cascader-item>
+    <lc-cascader-item
+      v-if="filterSource"
+      :source="filterSource"
+      :field-names="fieldNames"
+      :selected="selected"
+      :level="level + 1"
+      @update:selected="onSelectChange">
+    </lc-cascader-item>
   </div>
 </template>
 
@@ -30,7 +37,17 @@ export default {
     },
     fieldNames: {
       type: Object,
-    }
+    },
+    selected: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    level: {
+      type: Number,
+      default: 0
+    },
   },
   data() {
     return {
@@ -38,19 +55,21 @@ export default {
       selectedObj: null
     };
   },
-  watch: {
-    source () {
-      this.selectedObj = null;
-    }
-  },
   computed: {
     filterSource() {
-      return this.selectedObj ? this.selectedObj["children"] : null;
+      const currentSelected = this.selected[this.level]
+      return currentSelected  ? currentSelected["children"] : null;
     }
   },
   methods: {
     handleItemClick(item) {
-      this.selectedObj = item;
+      const selectedList = JSON.parse(JSON.stringify(this.selected))
+      selectedList[this.level] = item
+      selectedList.splice(this.level + 1) 
+      this.$emit('update:selected', selectedList)
+    },
+    onSelectChange (newSelected) {
+      this.$emit('update:selected', newSelected)
     }
   }
 };

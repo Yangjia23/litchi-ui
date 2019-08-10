@@ -1,10 +1,15 @@
 <template>
   <div :class="`${prefixCls}`">
     <div :class="`${prefixCls}-picker`" @click="handleClick">
-      <lc-input type="text" :class="`${prefixCls}-input`"></lc-input>
+      <lc-input type="text" :class="`${prefixCls}-input`" ></lc-input>
     </div>
     <div :class="`${prefixCls}-menus`">
-        <lc-cascader-item :source="filterSource" :field-names="props"></lc-cascader-item>
+        <lc-cascader-item
+          :source="filterSource"
+          :field-names="props"
+          :selected="value"
+          @update:selected="onSelectChange">
+        </lc-cascader-item>
     </div>
   </div>
 </template>
@@ -37,6 +42,12 @@ export default {
     },
     fieldNames: {
       type: Object,
+    },
+    value: {
+      type: Array,
+      default () {
+        return []
+      }
     }
   },
   components: {
@@ -58,6 +69,9 @@ export default {
   methods: {
     handleClick () {
       this.popoverVisible = !this.popoverVisible
+    },
+    onSelectChange (newSelected) {
+      this.$emit('input', newSelected)
     }
   }
 };

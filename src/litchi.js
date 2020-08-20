@@ -1,6 +1,6 @@
 import * as components from './components'
 
-const ComponentLibary = {
+const ComponentLibrary = {
     install(Vue, opts = {}) {
         for(const componentName in components) {
             if (componentName.toUpperCase() === 'TOAST') {
@@ -13,8 +13,8 @@ const ComponentLibary = {
     }
 }
 
-export default ComponentLibary
+export default ComponentLibrary
 
 if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(ComponentLibary)
+    window.Vue.use(ComponentLibrary)
 }

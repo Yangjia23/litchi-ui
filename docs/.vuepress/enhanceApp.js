@@ -1,5 +1,5 @@
-import ComponentLibary from './../../src/main';
+import ComponentLibrary from './../../src/litchi';
 
 export default ({Vue,options,router,siteData}) => {
-  Vue.use(ComponentLibary)
+  Vue.use(ComponentLibrary)
 }

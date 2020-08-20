@@ -14,11 +14,11 @@ describe("Button.vue", () => {
             destoryVM(vm)
         })
 
-        it('set icon.', () => {
-            vm = createTest(Button, { icon: 'setting' })
-            const useElement = vm.$el.querySelector('use')
-            expect(useElement.getAttribute('xlink:href')).to.equal('#i-setting')
-        })
+        // it('set icon.', () => {
+        //     vm = createTest(Button, { icon: 'setting' })
+        //     const useElement = vm.$el.querySelector('use')
+        //     expect(useElement.getAttribute('xlink:href')).to.equal('#i-setting')
+        // })
 
         // it('icon 默认的 order 是 1', () => {
         //     vm = createTest(Button, { icon: 'setting' }, true)
